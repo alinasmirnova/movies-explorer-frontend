@@ -1,0 +1,35 @@
+.auth__registration {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0 30px 0 0;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.auth__enter {
+    width: 76px;
+    height: 32px;
+}
+
+.auth__account {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+    border-radius: 40px;
+    width: 100px;
+    height: 32px;
+}
+
+.auth__account-icon {
+    background-color: #F9F9F9;
+    background-position: center;
+    background-image: url(../../../images/account_icon.svg);
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;    
+}
