@@ -22,6 +22,14 @@
     border-radius: 40px;
     width: 100px;
     height: 32px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 12px;    
 }
 
 .auth__account-icon {

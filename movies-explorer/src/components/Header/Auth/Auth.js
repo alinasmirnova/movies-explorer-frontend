@@ -8,10 +8,10 @@ function Auth({ className }) {
         <RowList className={`auth ${className}`}>
             <Link className='auth__registration' to="#">Регистрация</Link>
             <Button className="auth__enter">Войти</Button>
-            <Button className="auth__account">
+            <Link to="#" className="auth__account">
                 <span>Аккаунт</span>
                 <div className="auth__account-icon"/>
-            </Button>
+            </Link>
         </RowList>
     );
 }
