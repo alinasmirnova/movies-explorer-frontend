@@ -1,0 +1,23 @@
+.nav-tab {
+
+}
+
+.nav-tab__item {
+    width: 96px;
+    height: 36px;
+    background: #E8E8E8;
+    border-radius: 10px;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 36px;
+    margin: 0 10px 0 0;
+}
+
+.nav-tab__item_last {
+    margin: 0;
+}

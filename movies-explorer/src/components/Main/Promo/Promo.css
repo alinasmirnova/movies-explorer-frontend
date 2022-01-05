@@ -1,0 +1,24 @@
+.promo {
+    display: grid;
+    grid-template-rows: 1fr minmax(min-content, max-content);
+    grid-template-columns: 1fr;
+    width: calc(100% + 60px);
+    margin: 20px -30px;
+    background-color: #F5F5F5;
+    height: 493px;
+    justify-items: center;
+}
+
+.promo__header {
+    align-self: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+    text-align: center;
+    width: 65%;
+}
+
+.promo__nav-tab {
+    margin: 0 0 30px;
+}
