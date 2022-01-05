@@ -1,5 +1,5 @@
 .nav-tab {
-
+    column-gap: 10px;
 }
 
 .nav-tab__item {
@@ -14,10 +14,5 @@
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 36px;
-    margin: 0 10px 0 0;
-}
-
-.nav-tab__item_last {
-    margin: 0;
+    line-height: 36px;    
 }

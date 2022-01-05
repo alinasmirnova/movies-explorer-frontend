@@ -1,9 +1,12 @@
+.navigation {
+    column-gap: 16px;
+}
+
 .navigation__link {
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
     line-height: 18px;
-    margin: 0 16px 0;
     text-decoration: none;
     color: #000;
     cursor: pointer;
