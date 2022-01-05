@@ -1,6 +1,6 @@
-import './RowList.css';
+import './List.css';
 
-function RowList({ children, className }) {
+function List({ children, className }) {
     return (
         <ul className={`row-list ${className}`}>
             {
@@ -16,4 +16,4 @@ function RowList({ children, className }) {
     );
 }
 
-export default RowList;
+export default List;
