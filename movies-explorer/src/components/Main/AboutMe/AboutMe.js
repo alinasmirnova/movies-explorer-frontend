@@ -3,6 +3,7 @@ import List from "../../List";
 import photo from "../../../images/photo.jpg";
 import "./AboutMe.css";
 import SiteLink from "./SiteLink";
+import ExternalLink from "../../ExternalLink";
 
 function AboutMe() {
     return (
@@ -14,8 +15,8 @@ function AboutMe() {
                 <p className="about-me__description">Я живу в Санкт-Петербурге. Закончила бакалавриат и магистратуру по направлению «Программная инженерия» в АлтГТУ им. И.И. Ползунова в г. Барнауле. С 2015 года работаю бэкенд-разработчиком на стеке .NET. Тимлид в одной из подкоманд проекта Удостоверяющий Центр. Закончила курс по веб-разработке, чтобы начать освоение соседнего стека.</p>
                 <img className="about-me__photo" src={photo} alt="Алина Смирнова"/>
                 <List className="about-me__links">
-                    <a className="about-me__link" href="https://github.com/alinasmirnova" target="_blank" rel="noreferrer">Github</a>
-                    <a className="about-me__link" href="https://www.instagram.com/alinasmirnova915/" target="_blank" rel="noreferrer">Instagram</a>
+                    <ExternalLink className="about-me__link" href="https://github.com/alinasmirnova">Github</ExternalLink>
+                    <ExternalLink className="about-me__link" href="https://www.instagram.com/alinasmirnova915/">Instagram</ExternalLink>
                 </List>                
             </div>
             <div className="about-me__portfolio">

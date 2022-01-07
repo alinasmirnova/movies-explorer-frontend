@@ -1,3 +1,4 @@
+import ExternalLink from '../ExternalLink';
 import List from '../List';
 import './Footer.css';
 
@@ -9,9 +10,9 @@ function Footer() {
             <div className="footer__additions">
                 <p className="fooer__year">© 2022</p>
                 <List className="footer__links">
-                    <a className="footer__link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
-                    <a className="footer__link" href="https://github.com/alinasmirnova" target="_blank" rel="noreferrer">Github</a>
-                    <a className="footer__link" href="https://www.instagram.com/alinasmirnova915/" target="_blank" rel="noreferrer">Instagram</a>
+                    <ExternalLink className="footer__link" to="https://practicum.yandex.ru">Яндекс.Практикум</ExternalLink>
+                    <ExternalLink className="footer__link" to="https://github.com/alinasmirnova">Github</ExternalLink>
+                    <ExternalLink className="footer__link" to="https://www.instagram.com/alinasmirnova915/">Instagram</ExternalLink>
                 </List>
             </div>
         </section>

@@ -1,0 +1,11 @@
+.external-link {
+    opacity: 1;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.external-link:hover {
+    opacity: 0.6;
+    transition: opacity 0.4s linear;
+}

@@ -1,15 +1,15 @@
-import './Header.css';
 import Navigation from './Navigation';
 import Auth from './Auth';
+import InternalLink from '../InternalLink';
 import logo from'../../images/logo.svg'
-import { Link } from 'react-router-dom';
+import './Header.css';
 
 function Header() {
     return (
         <section className="header">
-            <Link className="header__logo" to="/">
+            <InternalLink className="header__logo" to="/">
                 <img src={logo} alt="Учебный проект" />
-            </Link>
+            </InternalLink>
             <Navigation />
             <Auth className="header__auth" />
         </section>

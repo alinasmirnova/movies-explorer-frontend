@@ -14,5 +14,11 @@
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 36px;    
+    line-height: 36px;  
+    opacity: 1;  
+}
+
+.nav-tab__item:hover {
+    opacity: 0.6;
+    transition: opacity 0.4s linear;
 }
