@@ -1,9 +1,8 @@
 import SectionTitle from "../SectionTitle";
 import List from "../../List";
 import photo from "../../../images/photo.jpg";
-import "./AboutMe.css";
-import SiteLink from "./SiteLink";
 import ExternalLink from "../../ExternalLink";
+import "./AboutMe.css";
 
 function AboutMe() {
     return (
@@ -18,15 +17,7 @@ function AboutMe() {
                     <ExternalLink className="about-me__link" href="https://github.com/alinasmirnova">Github</ExternalLink>
                     <ExternalLink className="about-me__link" href="https://www.instagram.com/alinasmirnova915/">Instagram</ExternalLink>
                 </List>                
-            </div>
-            <div className="about-me__portfolio">
-                <h3 className="about-me__portfolio-header">Портфолио</h3>
-                <List className="about-me__sites">
-                    <SiteLink to="https://alinasmirnova.github.io/how-to-learn/">Статичный сайт</SiteLink>
-                    <SiteLink to="https://alinasmirnova.github.io/russian-travel/">Адаптивный сайт</SiteLink>
-                    <SiteLink to="https://asmirnova.nomoredomains.rocks/" underlined={false}>Одностраничное приложение</SiteLink>
-                </List>
-            </div>
+            </div>            
         </section>
     );
 }

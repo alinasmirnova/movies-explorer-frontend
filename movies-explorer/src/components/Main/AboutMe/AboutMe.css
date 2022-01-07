@@ -51,6 +51,7 @@
     grid-area: links;
     column-gap: 20px; 
     width: fit-content;
+    align-self: flex-end;
 }
 
 .about-me__link {
@@ -60,24 +61,4 @@
     line-height: 17px;
     text-decoration: none;
     color: #000;
-}
-
-.about-me__portfolio {
-    margin: 100px 0 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.about-me__portfolio-header {
-    margin: 0;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 20px;
-    color: #A0A0A0;
-}
-
-.about-me__sites {
-    grid-auto-flow: row;
-
 }
