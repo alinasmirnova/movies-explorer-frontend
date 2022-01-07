@@ -2,6 +2,7 @@
     background-color: #F5F5F5;
     display: flex;
     flex-direction: column;
+    padding: 100px 70px;
 }
 
 .techs__body {
@@ -29,7 +30,6 @@
 }
 
 .techs__list {
-    margin: 0 0 100px;
     column-gap: 10px;
 }
 
