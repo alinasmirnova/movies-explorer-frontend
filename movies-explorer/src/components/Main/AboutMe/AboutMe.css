@@ -1,0 +1,83 @@
+.about-me {
+    padding: 110px 70px 125px;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-me__main {
+    display: grid;
+    grid-template-columns: minmax(min-content, 600px) 1fr;
+    grid-template-rows: repeat(2, minmax(min-content, max-content)) 1fr minmax(min-content, max-content);
+    grid-template-areas: "name photo"
+                        "about photo"
+                        "desc photo"
+                        "links photo";
+    column-gap: 30px;
+}
+
+.about-me__name {
+    grid-area: name;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+}
+
+.about-me__about {
+    grid-area: about;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+} 
+
+.about-me__description {
+    grid-area: desc;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.about-me__photo {
+    grid-area: photo;   
+    max-width: 270px; 
+    justify-self: flex-end;
+    margin: 66px 0 0;
+}
+
+.about-me__links {
+    grid-area: links;
+    column-gap: 20px; 
+    width: fit-content;
+}
+
+.about-me__link {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration: none;
+    color: #000;
+}
+
+.about-me__portfolio {
+    margin: 100px 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-me__portfolio-header {
+    margin: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color: #A0A0A0;
+}
+
+.about-me__sites {
+    grid-auto-flow: row;
+
+}
