@@ -1,4 +1,8 @@
 .navigation {
+    display: flex;
+    align-items: center;
+}
+.navigation__links {
     column-gap: 16px;
 }
 

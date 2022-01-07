@@ -9,15 +9,18 @@ import './Main.css'
 
 function Main() {
     return (
-        <div className="main">
+        <>
             <Header />
-            <Promo />
-            <AboutProject />
-            <Techs />
-            <AboutMe />
-            <Portfolio />
+            <main className="main">            
+                <Promo />
+                <AboutProject />
+                <Techs />
+                <AboutMe />
+                <Portfolio />            
+            </main>        
             <Footer />
-        </div>
+        </>
+        
     );
 }
 

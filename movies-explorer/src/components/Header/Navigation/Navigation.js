@@ -4,10 +4,12 @@ import './Navigation.css';
 
 function Navigation() {
     return (
-        <List className="navigation">
-            <InternalLink className="navigation__link" to="/movies">Фильмы</InternalLink>
-            <InternalLink className="navigation__link" to="/saved-movies">Сохраненные фильмы</InternalLink>
-        </List>
+        <nav className="navigation">
+            <List className="navigation__links">
+                <InternalLink className="navigation__link" to="/movies">Фильмы</InternalLink>
+                <InternalLink className="navigation__link" to="/saved-movies">Сохраненные фильмы</InternalLink>
+            </List>
+        </nav>    
     );
 }
 

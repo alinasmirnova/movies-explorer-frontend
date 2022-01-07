@@ -4,7 +4,7 @@ import './Footer.css';
 
 function Footer() {
     return (
-        <section className="footer">
+        <footer className="footer">
             <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <div className="footer__line"/>
             <div className="footer__additions">
@@ -15,7 +15,7 @@ function Footer() {
                     <ExternalLink className="footer__link" to="https://www.instagram.com/alinasmirnova915/">Instagram</ExternalLink>
                 </List>
             </div>
-        </section>
+        </footer>
     );
 }
 

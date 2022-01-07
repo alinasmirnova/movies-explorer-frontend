@@ -6,13 +6,13 @@ import './Header.css';
 
 function Header() {
     return (
-        <section className="header">
+        <header className="header">
             <InternalLink className="header__logo" to="/">
                 <img src={logo} alt="Учебный проект" />
             </InternalLink>
             <Navigation />
             <Auth className="header__auth" />
-        </section>
+        </header>
     );
 }
 
