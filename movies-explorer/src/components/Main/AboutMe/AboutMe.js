@@ -6,7 +6,7 @@ import SiteLink from "./SiteLink";
 
 function AboutMe() {
     return (
-        <section className="about-me">
+        <section className="about-me" id="student">
             <SectionTitle>Студент</SectionTitle>
             <div className="about-me__main">
                 <h2 className="about-me__name">Алина</h2>

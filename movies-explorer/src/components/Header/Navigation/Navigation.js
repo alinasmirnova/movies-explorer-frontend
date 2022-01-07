@@ -5,8 +5,8 @@ import './Navigation.css';
 function Navigation() {
     return (
         <List className="navigation">
-            <Link className="navigation__link" to="#">Фильмы</Link>
-            <Link className="navigation__link" to="#">Сохраненные фильмы</Link>
+            <Link className="navigation__link" to="/movies">Фильмы</Link>
+            <Link className="navigation__link" to="/saved-movies">Сохраненные фильмы</Link>
         </List>
     );
 }
