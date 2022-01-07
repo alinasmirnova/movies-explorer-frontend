@@ -15,9 +15,22 @@
     font-size: 50px;
     line-height: 58px;
     text-align: center;
-    width: 65%;
+    margin: 0 235px;
 }
 
 .promo__nav-tab {
     margin: 0 0 30px;
+}
+
+@media (max-width: 1279px) {
+    .promo {
+        margin: 20px 20px 0;
+        height: 834px;
+    }
+
+    .promo__header {
+        font-size: 40px;
+        line-height: 52px;
+        margin: 0 44px;
+    }
 }

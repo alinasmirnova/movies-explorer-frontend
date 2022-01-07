@@ -7,14 +7,15 @@
     height: 36px;
     background: #E8E8E8;
     border-radius: 10px;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: #fff;
-    text-align: center;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 36px;  
+    line-height: 16px;  
     opacity: 1;  
 }
 

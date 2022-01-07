@@ -12,3 +12,9 @@
 .header__auth {
     justify-self: flex-end;
 }
+
+@media (max-width: 1279px) {
+    .header {
+        padding: 0 30px;
+    }
+}
