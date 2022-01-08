@@ -89,3 +89,41 @@
         line-height: 18px;
     }
 }
+
+@media (max-width: 767px) {
+    .about-project {
+        padding: 70px 18px;
+    }
+    
+    .about-project__description {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        column-gap: 0;
+        row-gap: 56px;
+        margin: 60px 0;
+    }
+
+    .about-project__subtitle {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .about-project__text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about-project__schedule {
+        grid-template-rows: 35px 23px;
+    }
+
+    .about-project__week-number {
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .about-project__part {
+        font-size: 11px;
+        line-height: 13px;
+    }
+}

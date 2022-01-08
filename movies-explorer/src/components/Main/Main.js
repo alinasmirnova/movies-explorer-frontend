@@ -16,7 +16,7 @@ function Main() {
                 <AboutProject />
                 <Techs />
                 <AboutMe />
-                <Portfolio />            
+                <Portfolio /> 
             </main>        
             <Footer />
         </>

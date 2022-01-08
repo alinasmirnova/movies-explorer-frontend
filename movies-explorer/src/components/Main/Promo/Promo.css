@@ -34,3 +34,16 @@
         margin: 0 44px;
     }
 }
+
+@media (max-width: 767px) {
+    .promo {
+        margin: 14px 14px 0;
+        height: 586px;
+    }
+
+    .promo__header {
+        font-size: 29px;
+        line-height: 37px;
+        margin: 0;
+    }
+}

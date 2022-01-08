@@ -24,3 +24,10 @@
         line-height: 50px;
     }
 }
+
+@media (max-width: 767px) {
+    .site-link__title {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

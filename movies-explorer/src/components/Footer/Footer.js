@@ -8,7 +8,7 @@ function Footer() {
             <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <div className="footer__line"/>
             <div className="footer__additions">
-                <p className="fooer__year">© 2022</p>
+                <p className="footer__year">© 2022</p>
                 <List className="footer__links">
                     <ExternalLink className="footer__link" to="https://practicum.yandex.ru">Яндекс.Практикум</ExternalLink>
                     <ExternalLink className="footer__link" to="https://github.com/alinasmirnova">Github</ExternalLink>
