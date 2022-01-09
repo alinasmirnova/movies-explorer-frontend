@@ -6,7 +6,7 @@ import SearchForm from './SearchForm';
 function Movies() {
     return (
         <>
-            <Header />
+            <Header activeTab="movies"/>
             <main className='movies'>
                 <SearchForm />
             </main>

@@ -54,14 +54,13 @@
     line-height: 22px;
     text-align: center;
     display:inline-block;
-    padding-bottom: 4px;
-    box-sizing: border-box;
+    padding-bottom: 4px;   
     border-bottom: 2px solid transparent;
+    box-sizing: border-box;     
 }
 
-.sidebar__link:hover {
-    opacity: 1;
-    border-bottom: 2px solid black;
+.sidebar__link_active {
+    border-bottom: 2px solid #000;
 }
 
 @media (max-width: 767px) {

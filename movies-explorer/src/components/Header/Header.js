@@ -8,7 +8,7 @@ import Button from '../Button';
 import Sidebar from './Sidebar';
 import Account from './Account';
 
-function Header({isLoggedIn = true}) {
+function Header({activeTab, isLoggedIn = true}) {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [sidebarVisible, setSidebarVisible] = useState(false);
 
@@ -43,14 +43,14 @@ function Header({isLoggedIn = true}) {
                 { !isLoggedIn && <Auth className="header__auth"/> }
                 { isLoggedIn && screenWidth >= 1280 && (
                         <>
-                            <Navigation /> 
+                            <Navigation active={activeTab}/> 
                             <Account />
                         </>
                     )
                 }
                 { isLoggedIn && screenWidth < 1280 && <Button className="header__sidebar-button" onClick={openSideBar}/> }                    
             </header>
-            <Sidebar visible={sidebarVisible} onClose={closeSidebar} />
+            <Sidebar active={activeTab} visible={sidebarVisible} onClose={closeSidebar} />
         </>     
     );
 }

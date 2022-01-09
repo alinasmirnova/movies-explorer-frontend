@@ -10,7 +10,7 @@ import './Main.css'
 function Main() {
     return (
         <>
-            <Header />
+            <Header activeTab="main" />
             <main className="main">            
                 <Promo />
                 <AboutProject />
