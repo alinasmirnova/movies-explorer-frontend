@@ -32,7 +32,7 @@ function Header({isLoggedIn = false}) {
         return () => {
             window.removeEventListener("resize", handleResize);
         }
-    }, []);
+    });
 
     return (
         <>
