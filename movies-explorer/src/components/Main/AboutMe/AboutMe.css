@@ -23,6 +23,7 @@
     font-size: 50px;
     line-height: 58px;
     margin: 0 0 18px;
+    letter-spacing: -0.04em;
 }
 
 .about-me__about {
@@ -40,13 +41,15 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 22px;
+    margin: 0;
 }
 
 .about-me__photo {
     grid-area: photo;   
     max-width: 270px; 
     justify-self: flex-end;
-    margin: 66px 0 0;
+    align-self: flex-start;    
+    border-radius: 10px;
 }
 
 .about-me__links {

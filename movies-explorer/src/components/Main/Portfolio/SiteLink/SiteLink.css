@@ -16,6 +16,12 @@
     font-size: 30px;
     line-height: 50px;
     margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.site-link__arrow {
+    object-fit: contain;
+    
 }
 
 @media (max-width: 1279px) {
@@ -29,5 +35,9 @@
     .site-link__title {
         font-size: 18px;
         line-height: 28px;
+    }
+
+    .site-link__arrow {
+        width: 11px;
     }
 }

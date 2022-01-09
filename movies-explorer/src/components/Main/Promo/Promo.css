@@ -6,6 +6,7 @@
     height: 493px;
     justify-items: center;
     margin: 20px 40px 0;
+    border-radius: 10px;
 }
 
 .promo__header {
@@ -16,6 +17,7 @@
     line-height: 58px;
     text-align: center;
     margin: 0 235px;
+    letter-spacing: -0.04em;
 }
 
 .promo__nav-tab {
@@ -45,5 +47,9 @@
         font-size: 29px;
         line-height: 37px;
         margin: 0;
+    }
+
+    .promo__nav-tab {
+        margin: 0 0 17px;
     }
 }

@@ -8,7 +8,7 @@ import Button from '../Button';
 import Sidebar from './Sidebar';
 import Account from './Account';
 
-function Header({isLoggedIn = true}) {
+function Header({isLoggedIn = false}) {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [sidebarVisible, setSidebarVisible] = useState(false);
 

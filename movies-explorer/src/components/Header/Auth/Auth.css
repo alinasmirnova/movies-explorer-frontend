@@ -28,5 +28,7 @@
 
     .auth__enter {
         font-size: 10px;
+        width: 54px;
+        height: 26px;
     }
 }

@@ -24,11 +24,12 @@
 
 @media (max-width: 767px) {
     .portfolio {
-        padding: 0 14px 70px;
+        padding: 0 14px 50px;
     }
 
     .portfolio__header {
         font-size: 14px;
         line-height: 20px;
+        margin: 0 0 20px;
     }
 }
