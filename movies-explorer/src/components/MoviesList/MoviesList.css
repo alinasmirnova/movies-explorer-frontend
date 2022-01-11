@@ -1,0 +1,8 @@
+.movies-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 270px);
+    column-gap: 20px;
+    row-gap: 38px;
+    padding: 80px 70px 0;
+    justify-content: center;
+}
