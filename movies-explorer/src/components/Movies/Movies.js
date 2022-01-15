@@ -4,6 +4,7 @@ import demoCards from '../../utils/demoCards';
 import Footer from '../Footer';
 import Header from '../Header';
 import MoviesList from '../MoviesList';
+import Button from '../Button';
 import './Movies.css';
 import SearchForm from './SearchForm';
 
@@ -18,12 +19,17 @@ function Movies() {
 
     }
 
+    const getMore = () => {
+        
+    }
+
     return (
         <>
             <Header activeTab="movies"/>
             <main className='movies'>
                 <SearchForm />
                 <MoviesList cards={cards} onLike={handleCardLike} />
+                <Button className="movies__more-button" onClick={getMore}>Ещё</Button>
             </main>
             <Footer />
         </>
