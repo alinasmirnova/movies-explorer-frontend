@@ -7,9 +7,11 @@ import MoviesList from '../MoviesList';
 import Button from '../Button';
 import './Movies.css';
 import SearchForm from './SearchForm';
+import Preloader from '../Preloader';
 
 function Movies() {
     const [cards, setCards] = useState([]);
+    const [showPreloader, setShowPreloader] = useState(true);
 
     useEffect(() => {
         setCards(demoCards);
@@ -20,7 +22,7 @@ function Movies() {
     }
 
     const getMore = () => {
-        
+
     }
 
     return (
@@ -28,8 +30,13 @@ function Movies() {
             <Header activeTab="movies"/>
             <main className='movies'>
                 <SearchForm />
-                <MoviesList cards={cards} onLike={handleCardLike} />
-                <Button className="movies__more-button" onClick={getMore}>Ещё</Button>
+                { showPreloader && <Preloader /> }
+                { !showPreloader && 
+                    <>                
+                        <MoviesList cards={cards} onLike={handleCardLike} /> 
+                        <Button className="movies__more-button" onClick={getMore}>Ещё</Button>
+                    </>
+                }
             </main>
             <Footer />
         </>

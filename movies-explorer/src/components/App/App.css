@@ -1,13 +1,15 @@
 .body {
-    min-height: 100%;
     font-family: "Inter", "Arial", sans-serif; 
     color: #000;
-    display: flex;
+    display: flex; 
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
 .body__container {
     max-width: 1280px;
     width: 100%;
+    min-height: 100vh;
+    display: grid; 
+    grid-template-rows: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
 }
