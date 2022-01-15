@@ -4,12 +4,11 @@ import demoCards from '../../utils/demoCards';
 import Footer from '../Footer';
 import Header from '../Header';
 import MoviesList from '../MoviesList';
-import Button from '../Button';
 import SearchForm from '../SearchForm';
 import Preloader from '../Preloader';
-import './Movies.css';
+import './SavedMovies.css';
 
-function Movies() {
+function SavedMovies() {
     const [cards, setCards] = useState([]);
     const [showPreloader, setShowPreloader] = useState(false);
 
@@ -17,24 +16,19 @@ function Movies() {
         setCards(demoCards);
     }, []);
 
-    const handleCardLike = () => {
-
-    }
-
-    const getMore = () => {
+    const handleCardDelete = () => {
 
     }
 
     return (
         <>
-            <Header activeTab="movies"/>
-            <main className='movies'>
+            <Header activeTab="saved-movies"/>
+            <main className='saved-movies'>
                 <SearchForm />
                 { showPreloader && <Preloader /> }
                 { !showPreloader && 
                     <>                
-                        <MoviesList cards={cards} onLike={handleCardLike} /> 
-                        <Button className="movies__more-button" onClick={getMore}>Ещё</Button>
+                        <MoviesList className="saved-movies__list" cards={cards} onDelete={handleCardDelete} /> 
                     </>
                 }
             </main>
@@ -43,4 +37,4 @@ function Movies() {
     );
 }
 
-export default Movies;
+export default SavedMovies;

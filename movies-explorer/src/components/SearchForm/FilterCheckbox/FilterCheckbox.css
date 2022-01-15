@@ -23,11 +23,11 @@
     margin: 0 14px 0 0;
     width: 36px;
     height: 20px;
-    background-image: url(../../../../images/small-tumb-off.svg);
+    background-image: url(../../../images/small-tumb-off.svg);
 }
 
 .filter-checkbox__input:checked + .filter-checkbox__checkbox {
-    background-image: url(../../../../images/small-tumb.svg);
+    background-image: url(../../../images/small-tumb.svg);
 }
 
 .filter-checkbox__text {

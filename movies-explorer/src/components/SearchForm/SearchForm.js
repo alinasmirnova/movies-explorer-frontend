@@ -1,5 +1,5 @@
 import { useState } from 'react/cjs/react.development';
-import Button from '../../Button';
+import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
 
