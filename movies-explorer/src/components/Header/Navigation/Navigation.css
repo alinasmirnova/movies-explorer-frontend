@@ -1,6 +1,6 @@
 .navigation {
     display: flex;
-    margin: 8px 0 0;
+    margin: 0 0 8px;
 }
 .navigation__links {
     column-gap: 16px;

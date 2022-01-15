@@ -11,7 +11,7 @@ import Preloader from '../Preloader';
 
 function Movies() {
     const [cards, setCards] = useState([]);
-    const [showPreloader, setShowPreloader] = useState(true);
+    const [showPreloader, setShowPreloader] = useState(false);
 
     useEffect(() => {
         setCards(demoCards);
