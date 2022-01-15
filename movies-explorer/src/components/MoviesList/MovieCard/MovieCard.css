@@ -21,7 +21,7 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    margin: 14px 14px 0 0;
+    margin: 14px 20px 0 0;
 }
 
 .card__action {
@@ -48,4 +48,11 @@
     line-height: 13px;
     color: #A0A0A0;
     margin: 6px 0 10px;
+}
+
+@media (max-width: 1279px) {
+    .card__thumbnail {
+        width: 339px;
+        height: 190px;
+    }
 }

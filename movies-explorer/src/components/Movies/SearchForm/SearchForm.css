@@ -2,14 +2,15 @@
     display: flex;
     flex-direction: column;
     margin: 70px 70px 0;
-    padding: 0 0 44px;
+    padding: 0 0 43px;
     border-bottom: rgba(170, 170, 170, 0.2) solid 1px;
+    box-sizing: border-box;
 }
 
 .search-form__container {
     display: grid;
     grid-template-columns: 1fr minmax(min-content, max-content);
-    margin: 0 0 27px;
+    margin: 0 0 26px;
     border:rgba(170, 170, 170, 0.2) solid 1.5px;
     border-radius: 8px;
     padding: 10px;
@@ -47,4 +48,11 @@
     height: 52px;
     font-size: 14px;
     line-height: 18px;
+}
+
+@media (max-width: 1279px) {
+    .search-form {
+        margin: 70px 30px 0;
+        padding: 0 0 51px;
+    }
 }
