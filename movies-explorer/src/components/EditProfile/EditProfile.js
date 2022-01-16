@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import Button from '../Button';
-import EditableField from '../EditableField/EditableField';
 import Header from '../Header';
-import { validateName, validateEmail } from '../../utils/validations';
 import './EditProfile.css';
+import { UserName, Email } from '../EditableFields';
 
 function EditProfile() {
     const [userName, setUserName] = useState('');
@@ -37,30 +36,8 @@ function EditProfile() {
             <main className="edit-profile">
                 <h1 className="edit-profile__title">Редактирование профиля</h1>
                 <form className="edit-profile__form" name="edit-profile" noValidate>
-                    <EditableField
-                        name="name"
-                        title="Имя"
-                        placeholder="Имя"
-                        type="text"
-                        value={userName}
-                        minLenght="2"
-                        maxLenght="30"
-                        onError={handleError}
-                        onValueChange={handleNameChange}
-                        validate={validateName}
-                        required />
-
-                    <EditableField
-                        name="email"
-                        title="E-mail"
-                        placeholder="E-mail"
-                        type="email"
-                        value={userEmail}
-                        onError={handleError}
-                        onValueChange={handleEmailChange}
-                        validate={validateEmail}
-                        required />
-
+                    <UserName value={userName} onChange={handleNameChange} onError={handleError}/>
+                    <Email value={userEmail} onChange={handleEmailChange} onError={handleError}/>
                     <Button className="edit-profile__submit" type="submit" onClick={handleSave} enabled={hasErrors}>Сохранить</Button>
                 </form>
             </main>
