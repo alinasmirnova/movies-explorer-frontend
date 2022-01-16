@@ -6,7 +6,7 @@ import SavedMovies from '../SavedMovies';
 import Profile from '../Profile/Profile';
 import EditProfile from '../EditProfile';
 import Register from '../Register';
-
+import Login from '../Login';
 import './App.css';
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
                     <Route exact path="/profile" element={<Profile onLogout={handleLogout} />} />
                     <Route exact path="/edit-profile" element={<EditProfile />} />
                     <Route exact path="/signup" element={<Register />} />
+                    <Route exact path="/signin" element={<Login />} />
                 </Routes>
             </div>            
         </div>
