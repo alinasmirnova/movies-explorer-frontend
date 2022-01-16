@@ -1,0 +1,28 @@
+.field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 0 16px;
+}
+
+.field__underlined {
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.field__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    margin: 0 17px 0 0;
+}
+
+.field__value {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    overflow-wrap: anywhere;
+    margin: 0;
+}
