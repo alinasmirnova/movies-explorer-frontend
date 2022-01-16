@@ -1,30 +1,6 @@
 .edit-profile {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 71px auto 70px;
     justify-content: center;
-}
-
-.edit-profile__title {
-    margin: 0 0 20px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-}
-
-.edit-profile__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    width: 396px;
-}
-
-.edit-profile__submit {
-    height: 45px;
-    width: 100%;
-    font-size: 14px;
-    line-height: 17px;
-    margin: 69px;
 }

@@ -3,6 +3,7 @@ import Button from '../Button';
 import Header from '../Header';
 import './EditProfile.css';
 import { UserName, Email } from '../EditableFields';
+import UserForm from '../UserForm';
 
 function EditProfile() {
     const [userName, setUserName] = useState('');
@@ -14,7 +15,7 @@ function EditProfile() {
         setUserEmail('pochta@yandex.ru');
     }, []);
 
-    const handleSave = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
     };
 
@@ -34,12 +35,10 @@ function EditProfile() {
         <>
             <Header isLoggedIn={true} />
             <main className="edit-profile">
-                <h1 className="edit-profile__title">Редактирование профиля</h1>
-                <form className="edit-profile__form" name="edit-profile" noValidate>
+                <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" onSubmit={handleSubmit} hasErrors={hasErrors}>
                     <UserName value={userName} onChange={handleNameChange} onError={handleError}/>
                     <Email value={userEmail} onChange={handleEmailChange} onError={handleError}/>
-                    <Button className="edit-profile__submit" type="submit" onClick={handleSave} enabled={hasErrors}>Сохранить</Button>
-                </form>
+                </UserForm>
             </main>
         </>
     );

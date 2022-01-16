@@ -1,0 +1,36 @@
+.user-form {
+    display: grid;
+    grid-template-rows: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
+    flex-direction: column;
+    width: 396px;
+    height: 100%;
+}
+
+.user-form__title {
+    margin: 0 0 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.user-form__submit {
+    height: 45px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 20px 0 0;
+    justify-self: flex-end;
+}
+
+@media (max-width: 767px) {
+    .user-form {
+        align-content: center;
+        width: 260px;
+    }
+
+    .user-form__submit {
+        font-size: 12px;
+        line-height: 15px;
+    }    
+}
