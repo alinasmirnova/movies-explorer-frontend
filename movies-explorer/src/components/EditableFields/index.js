@@ -1,3 +1,4 @@
 import UserName from './UserName/UserName';
 import Email from './Email/Email';
-export { UserName, Email };
+import Password from './Password/Password';
+export { UserName, Email, Password };

@@ -5,6 +5,8 @@ import Movies from '../Movies';
 import SavedMovies from '../SavedMovies';
 import Profile from '../Profile/Profile';
 import EditProfile from '../EditProfile';
+import Register from '../Register';
+
 import './App.css';
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
                     <Route exact path="/saved-movies" element={<SavedMovies />} />
                     <Route exact path="/profile" element={<Profile onLogout={handleLogout} />} />
                     <Route exact path="/edit-profile" element={<EditProfile />} />
+                    <Route exact path="/signup" element={<Register />} />
                 </Routes>
             </div>            
         </div>
