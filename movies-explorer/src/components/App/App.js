@@ -8,6 +8,8 @@ import EditProfile from '../EditProfile';
 import Register from '../Register';
 import Login from '../Login';
 import './App.css';
+import ErrorPage from '../ErrorPage';
+import { notFound } from '../../utils/consts';
 
 function App() {
     const handleLogout = () => {
@@ -25,6 +27,7 @@ function App() {
                     <Route exact path="/edit-profile" element={<EditProfile />} />
                     <Route exact path="/signup" element={<Register />} />
                     <Route exact path="/signin" element={<Login />} />
+                    <Route path="*" element={<ErrorPage error={notFound}/>} />
                 </Routes>
             </div>            
         </div>
