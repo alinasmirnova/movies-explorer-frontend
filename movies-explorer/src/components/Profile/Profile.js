@@ -20,9 +20,9 @@ function Profile({ onLogout }) {
     }, []);
 
     return (
-        <>
+        <div className="profile">
             <Header isLoggedIn={true} />
-            <main className="profile">
+            <main className="profile__container">
                 <h1 className="profile__name">Привет, {userInfo.name}!</h1>
                 <div className="profile__fields">
                     <Field title="Имя">{userInfo.name}</Field>
@@ -33,7 +33,7 @@ function Profile({ onLogout }) {
                     <Button className="profile__logout" onClick={logout}>Выйти из аккаунта</Button>
                 </List>
             </main>
-        </>        
+        </div>        
     );
 }
 

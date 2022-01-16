@@ -26,9 +26,9 @@ function Movies() {
     }
 
     return (
-        <>
+        <div className="movies">
             <Header activeTab="movies"/>
-            <main className='movies'>
+            <main className="movies__container">
                 <SearchForm />
                 { showPreloader && <Preloader /> }
                 { !showPreloader && 
@@ -39,7 +39,7 @@ function Movies() {
                 }
             </main>
             <Footer />
-        </>
+        </div>
     );
 }
 

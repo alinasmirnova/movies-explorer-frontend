@@ -21,9 +21,9 @@ function SavedMovies() {
     }
 
     return (
-        <>
+        <div className="saved-movies">
             <Header activeTab="saved-movies"/>
-            <main className='saved-movies'>
+            <main className='saved-movies__container'>
                 <SearchForm />
                 { showPreloader && <Preloader /> }
                 { !showPreloader && 
@@ -33,7 +33,7 @@ function SavedMovies() {
                 }
             </main>
             <Footer />
-        </>
+        </div>
     );
 }
 

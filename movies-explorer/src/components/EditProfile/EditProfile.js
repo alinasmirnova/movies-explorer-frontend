@@ -32,15 +32,15 @@ function EditProfile() {
     }
 
     return (
-        <>
+        <div className="edit-profile">
             <Header isLoggedIn={true} />
-            <main className="edit-profile">
+            <main className="edit-profile__container">
                 <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" onSubmit={handleSubmit} hasErrors={hasErrors}>
                     <UserName value={userName} onChange={handleNameChange} onError={handleError}/>
                     <Email value={userEmail} onChange={handleEmailChange} onError={handleError}/>
                 </UserForm>
             </main>
-        </>
+        </div>
     );
 }
 

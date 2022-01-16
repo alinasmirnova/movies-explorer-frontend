@@ -32,9 +32,8 @@ function Register() {
     }    
 
     return (
-        <>
-            <header />
-            <main className='register'>
+        <div className="register">            
+            <main className="register__container">
                 <InternalLink className="register__logo" to="/">
                     <img src={logo} alt="Учебный проект" />
                 </InternalLink>
@@ -48,7 +47,7 @@ function Register() {
                     <InternalLink className="register__enter-link" to="/signin">Войти</InternalLink>                    
                 </p>             
             </main>
-        </>        
+        </div>        
     );
 }
 
