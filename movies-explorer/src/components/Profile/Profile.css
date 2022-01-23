@@ -9,7 +9,7 @@
     grid-template-rows: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
     align-content: flex-end;
     justify-items: center;
-    margin: 74px auto 70px;
+    margin: 74px 435px 70px;
 }
 
 .profile__name {
@@ -23,7 +23,7 @@
 .profile__fields {
     display: flex;
     flex-direction: column;
-    width: 410px;
+    width: 100%;
     margin: 106px 0 0
 }
 
@@ -53,17 +53,17 @@
 }
 
 @media (max-width: 1279px) {
-    .profile {
-        margin: 236px auto 269px;
+    .profile__container {
+        margin: 236px 179px 269px;
     }
-
+    
     .profile__fields {
         margin: 79px 0 0;
     }
 }
 
 @media (max-width: 767px) {
-    .profile {
+    .profile__container {
         margin: 70px 30px 40px;
     }
 

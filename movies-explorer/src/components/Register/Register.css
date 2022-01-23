@@ -35,15 +35,15 @@
 }
 
 @media (max-width: 1279px) {
-    .register {
-        margin: 232px auto;
-    }    
+    .register__container {
+        margin: 232px 186px;
+    }
 }
 
 @media (max-width: 767px) {
-    .register {
-        margin: 56px auto 30px;
-    }    
+    .register__container {
+        margin: 56px 30px 30px;
+    }   
 
     .register__logo {
         margin: 0 0 50px;

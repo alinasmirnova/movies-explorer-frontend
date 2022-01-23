@@ -35,19 +35,19 @@
 }
 
 @media (max-width: 1279px) {
-    .login {
-        margin: 232px auto;
-    }    
+    .login__container {
+        margin: 232px 201px;
+    }
 }
 
 @media (max-width: 767px) {
-    .login {
-        margin: 56px auto 30px;
-    }    
-
     .login__logo {
         margin: 0 0 50px;
         justify-content: center;
+    }
+
+    .login__container {
+        margin: 56px 30px 30px;
     }
 
     .login__enter-text {
