@@ -22,7 +22,7 @@ function SearchForm() {
     return (
         <form name="search-films" className="search-form">
             <div className="search-form__container">
-                <input name="title" className="search-form__input" type="text" placeholder="Фильм" value={value} onChange={handleValueChange}/>
+                <input name="title" className="search-form__input" type="text" placeholder="Фильм" value={value} onChange={handleValueChange} required/>
                 <Button className="search-form__submit" type="submit" onClick={handleSubmit}>Поиск</Button>
             </div>
             <FilterCheckbox name="shortsOnly" value={shortsOnly} onChange={handleShortsOnlyChange}/>
