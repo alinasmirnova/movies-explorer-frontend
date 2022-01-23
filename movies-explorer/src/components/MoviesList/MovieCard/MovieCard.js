@@ -1,6 +1,7 @@
 import Button from '../../Button';
 import { formatDuration } from '../../../utils/formatting';
 import likeIcon from '../../../images/like.svg';
+import likeDisabledIcon from '../../../images/like-disabled.svg';
 import deleteIcon from '../../../images/delete.svg';
 import './MovieCard.css';
 
@@ -10,7 +11,7 @@ function MovieCard({ card, onLike, onDelete }) {
             <img className="card__thumbnail" src={card.thumbnail} alt={card.nameRU} />
             <h2 className="card__title">{card.nameRU}</h2>
             <Button className="card__action" onClick={onLike ?? onDelete}>
-                { onLike && <img className="card__like-icon" src={likeIcon} alt="Сохранить"/> }
+                { onLike && <img className="card__like-icon" src={card.isSaved ? likeIcon : likeDisabledIcon} alt={ card.isSaved ? "Удалить" : "Сохранить"}/> }
                 { onDelete && <img className="card__delete-icon" src={deleteIcon} alt="Удалить"/> }
             </Button>
             <div className="card__delimeter" />
