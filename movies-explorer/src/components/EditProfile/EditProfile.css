@@ -1,0 +1,11 @@
+.edit-profile {
+    min-height: 100vh;
+    display: grid; 
+    grid-template-rows: minmax(min-content, max-content) 1fr minmax(min-content, max-content);
+}
+.edit-profile__container {
+    display: flex;
+    flex-direction: column;
+    margin: 71px auto 70px;
+    justify-content: center;
+}

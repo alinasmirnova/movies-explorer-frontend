@@ -1,0 +1,27 @@
+.section-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title__text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0 0 23px;
+    padding: 0;
+    letter-spacing: -0.04em;
+}
+
+.section-title__line {
+    border-bottom: #000 solid 1px;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    .section-title__text {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0 0 28px;
+    }
+}

@@ -1,0 +1,34 @@
+.auth {
+    column-gap: 30px;
+}
+
+.auth__registration {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;    
+}
+
+.auth__enter {
+    width: 76px;
+    height: 32px;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+@media (max-width: 767px) {
+    .auth {
+        column-gap: 14px;
+    }
+
+    .auth__registration {
+        font-size: 10px;
+    }
+
+    .auth__enter {
+        font-size: 10px;
+        width: 54px;
+        height: 26px;
+    }
+}

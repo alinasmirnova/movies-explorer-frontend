@@ -1,0 +1,12 @@
+.body {
+    font-family: "Inter", "Arial", sans-serif; 
+    color: #000;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.body__container {
+    max-width: 1280px;
+    width: 100%;  
+}

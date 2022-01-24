@@ -1,0 +1,38 @@
+.nav-tab {
+    column-gap: 10px;
+}
+
+.nav-tab__item {
+    width: 96px;
+    height: 36px;
+    background: #E8E8E8;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;  
+    opacity: 1;  
+}
+
+.nav-tab__item:hover {
+    opacity: 0.7;
+    transition: opacity 0.4s linear;
+}
+
+@media (max-width: 767px) {
+    .nav-tab {
+        column-gap: 6px;
+    }
+
+    .nav-tab__item {
+        width: 82px;
+        height: 26px;
+        border-radius: 6px;
+        font-size: 10px;
+    }
+}

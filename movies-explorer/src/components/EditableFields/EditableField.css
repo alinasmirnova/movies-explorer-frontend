@@ -1,0 +1,40 @@
+.editable-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.editable-field__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #A0A0A0;
+    margin: 20px 0 10px;
+}
+
+.editable-field__input {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 15px;
+    width: 100%;
+    background: #F9F9F9;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.editable-field__input_invalid {
+    color: #FF4062;
+}
+
+.editable-field__error {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF4062;
+    margin: 10px 0 0;
+}

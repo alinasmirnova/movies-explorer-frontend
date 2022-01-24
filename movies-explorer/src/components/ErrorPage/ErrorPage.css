@@ -1,0 +1,64 @@
+.error-page {
+    display: grid;
+    grid-template-rows: 1fr minmax(min-content, max-content);
+    align-content: center;
+    justify-items: center;
+    min-height: 100vh;
+}
+
+.error-page__error {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+}
+
+.error-page__error-code {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 140px;
+    line-height: 169px;
+    box-sizing: border-box;
+    padding: 70px 0 5px;
+    text-align: center;
+    margin: 0;
+}
+
+.error-page__error-text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    margin: 0;
+}
+
+.error-page__back {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: transparent;
+    color: black;
+    margin: 0 0 60px;
+    height: fit-content;
+}
+
+@media (max-width: 767px) {
+    .error-page__error-code {
+        font-size: 80px;
+        line-height: 97px;
+        padding: 45px 0 10px;
+    }
+
+    .error-page__error-text {
+        font-size: 12px;
+        line-height: 15px;
+        
+    }
+
+    .error-page__back {
+        font-size: 12px;
+        line-height: 15px;
+        margin: 0 0 30px;
+    }
+}
