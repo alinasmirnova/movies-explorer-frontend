@@ -4,7 +4,7 @@ import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ onSubmit }) {
     const [value, setValue] = useState('');
     const [shortsOnly, setShortsOnly] = useState(false);
     const [errorText, setErrorText] = useState('');
@@ -22,6 +22,9 @@ function SearchForm() {
         e.preventDefault();
         if (value === '') {
             setErrorText(keywordMissingMsg);
+        }
+        else {
+            onSubmit(value, shortsOnly);
         }
     }
 

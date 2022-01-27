@@ -7,14 +7,11 @@ import Button from '../Button';
 import SearchForm from '../SearchForm';
 import Preloader from '../Preloader';
 import './Movies.css';
+import { getMovies } from '../../utils/moviesApi';
 
 function Movies() {
     const [cards, setCards] = useState([]);
     const [showPreloader, setShowPreloader] = useState(false);
-
-    useEffect(() => {
-        setCards(demoCards);
-    }, []);
 
     const handleCardLike = () => {
 
@@ -24,11 +21,25 @@ function Movies() {
 
     }
 
+    const handleSearch = (keyword, shortsOnly) => {
+        setShowPreloader(true);
+        getMovies()
+        .then((res) => {
+            setCards(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            setShowPreloader(false);
+        });
+    }
+
     return (
         <div className="movies">
             <Header activeTab="movies"/>
             <main className="movies__container">
-                <SearchForm />
+                <SearchForm onSubmit={handleSearch}/>
                 { showPreloader && <Preloader /> }
                 { !showPreloader && 
                     <>                

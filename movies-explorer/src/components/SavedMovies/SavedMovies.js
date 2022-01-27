@@ -20,11 +20,15 @@ function SavedMovies() {
 
     }
 
+    const handleSearch = (keyword, shortsOnly) => {
+
+    }
+
     return (
         <div className="saved-movies">
             <Header activeTab="saved-movies"/>
             <main className='saved-movies__container'>
-                <SearchForm />
+                <SearchForm onSubmit={ handleSearch }/>
                 { showPreloader && <Preloader /> }
                 { !showPreloader && 
                     <>                

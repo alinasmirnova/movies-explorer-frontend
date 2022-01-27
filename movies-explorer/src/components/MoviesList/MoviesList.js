@@ -7,7 +7,7 @@ function MoviesList({ cards, onLike, onDelete, className }) {
             {
                 cards.map((card) => {
                     return (
-                        <MovieCard key={card._id} card={card} onLike={onLike} onDelete={onDelete} />
+                        <MovieCard key={card.movieId} card={card} onLike={onLike} onDelete={onDelete} />
                     )
                 })
             }
