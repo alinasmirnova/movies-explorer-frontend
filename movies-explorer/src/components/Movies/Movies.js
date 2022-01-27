@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import demoCards from '../../utils/demoCards';
+import React, { useState } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import MoviesList from '../MoviesList';
@@ -28,6 +27,7 @@ function Movies() {
             setCards(res);
         })
         .catch((err) => {
+            setCards([]);
             console.log(err);
         })
         .finally(() => {
@@ -41,11 +41,14 @@ function Movies() {
             <main className="movies__container">
                 <SearchForm onSubmit={handleSearch}/>
                 { showPreloader && <Preloader /> }
-                { !showPreloader && 
+                { !showPreloader && cards.length > 0 &&
                     <>                
                         <MoviesList cards={cards} onLike={handleCardLike} /> 
                         <Button className="movies__more-button" onClick={getMore}>Ещё</Button>
                     </>
+                }
+                { !showPreloader && cards.length === 0 &&
+                    <p className="movies__nothing-found">Ничего не найдено</p>
                 }
             </main>
             <Footer />

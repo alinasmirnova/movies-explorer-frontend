@@ -23,3 +23,10 @@
     border-radius: 6px;
     color: #000;
 }
+
+.movies__nothing-found {
+    font-size: 24px;
+    line-height: 29px;
+    align-self: center;
+    justify-self: center;
+}
