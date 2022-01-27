@@ -11,6 +11,7 @@ import ErrorPage from '../ErrorPage';
 import { notFound } from '../../utils/consts';
 import ErrorModal from '../ErrorModal';
 import './App.css';
+import ErrorActionContext from '../../contexts/ErrorActionContext';
 
 function App() {
     const [showError, setShowError] = useState(false);
@@ -20,26 +21,33 @@ function App() {
         setShowError(false);
     }
 
+    const handleError = (err) => {
+        setErrorMessage(err.message);
+        setShowError(true);
+    }
+
     const handleLogout = () => {
 
     }
 
     return (
-        <div className="body">
-            <div className="body__container">
-                <Routes>
-                    <Route exact path="/" element={<Main />} />
-                    <Route exact path="/movies" element={<Movies />} />
-                    <Route exact path="/saved-movies" element={<SavedMovies />} />
-                    <Route exact path="/profile" element={<Profile onLogout={handleLogout} />} />
-                    <Route exact path="/edit-profile" element={<EditProfile />} />
-                    <Route exact path="/signup" element={<Register />} />
-                    <Route exact path="/signin" element={<Login />} />
-                    <Route path="*" element={<ErrorPage error={notFound}/>} />
-                </Routes>
-            </div> 
-            { showError && <ErrorModal message={errorMessage} onClose={handleErrorClose}/>}           
-        </div>
+        <ErrorActionContext.Provider value={handleError}>
+            <div className="body">
+                <div className="body__container">
+                    <Routes>
+                        <Route exact path="/" element={<Main />} />
+                        <Route exact path="/movies" element={<Movies />} />
+                        <Route exact path="/saved-movies" element={<SavedMovies />} />
+                        <Route exact path="/profile" element={<Profile onLogout={handleLogout} />} />
+                        <Route exact path="/edit-profile" element={<EditProfile />} />
+                        <Route exact path="/signup" element={<Register />} />
+                        <Route exact path="/signin" element={<Login />} />
+                        <Route path="*" element={<ErrorPage error={notFound} />} />
+                    </Routes>
+                </div>
+                {showError && <ErrorModal message={errorMessage} onClose={handleErrorClose} />}
+            </div>
+        </ErrorActionContext.Provider>
     );
 }
 
