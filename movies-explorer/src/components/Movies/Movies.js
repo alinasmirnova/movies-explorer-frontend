@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import MoviesList from '../MoviesList';
@@ -8,8 +8,9 @@ import Preloader from '../Preloader';
 import './Movies.css';
 import { getMovies } from '../../utils/moviesApi';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
-import { searchErrorMsg } from '../../utils/consts';
+import { cardsKey, searchErrorMsg, visibleCardsKey } from '../../utils/consts';
 import { getVisibleCards } from '../../utils/cardsHelpers';
+import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 
 function Movies() {
     const [cards, setCards] = useState([]);
@@ -17,29 +18,44 @@ function Movies() {
     const [showPreloader, setShowPreloader] = useState(false);
     const onError = React.useContext(ErrorActionContext);
 
+    useEffect(() => {
+        setCards(fromLocalStorage(cardsKey) ?? []);
+        setVisibleCards(fromLocalStorage(visibleCardsKey) ?? []);
+    }, []);
+
     const handleCardLike = () => {
 
     }
 
     const getMore = () => {
-        setVisibleCards(getVisibleCards(cards, visibleCards));
+        updateVisibleCards(getVisibleCards(cards, visibleCards));
     }
 
     const handleSearch = (keyword, shortsOnly) => {
         setShowPreloader(true);
         getMovies()
         .then((res) => {    
-            setCards(res);
-            setVisibleCards(getVisibleCards(res, []))
+            updateCards(res);
+            updateVisibleCards(getVisibleCards(res, []))
         })
         .catch((err) => {
-            setCards([]);
-            setVisibleCards([])
+            updateCards([]);
+            updateVisibleCards([])
             onError({ message: searchErrorMsg });
         })
         .finally(() => {
-            setShowPreloader(false); 
+            setShowPreloader(false);            
         });
+    }
+
+    const updateCards = (all) => {
+        setCards(all);
+        toLocalStorage(cardsKey, all);     
+    }
+
+    const updateVisibleCards = (visible) => {
+        setVisibleCards(visible);
+        toLocalStorage(visibleCardsKey, visible);
     }
 
     return (

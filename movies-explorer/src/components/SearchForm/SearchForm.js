@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
-import { keywordMissingMsg } from '../../utils/consts';
+import { keywordMissingMsg, searchTextKey } from '../../utils/consts';
+import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
@@ -8,6 +10,10 @@ function SearchForm({ onSubmit }) {
     const [value, setValue] = useState('');
     const [shortsOnly, setShortsOnly] = useState(false);
     const [errorText, setErrorText] = useState('');
+
+    useEffect(() => {
+        setValue(fromLocalStorage(searchTextKey) ?? '');
+    }, []);
 
     const handleValueChange = (e) => {
         setValue(e.target.value);
@@ -20,6 +26,7 @@ function SearchForm({ onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        toLocalStorage(searchTextKey, value);
         if (value === '') {
             setErrorText(keywordMissingMsg);
         }
