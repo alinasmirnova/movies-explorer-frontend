@@ -33,7 +33,7 @@ function Movies() {
 
     const handleSearch = (keyword, shortsOnly) => {
         setShowPreloader(true);
-        getMovies()
+        getMovies(keyword, shortsOnly)
         .then((res) => {    
             updateCards(res);
             updateVisibleCards(getVisibleCards(res, []))
