@@ -11,8 +11,8 @@ function UserName({value, onChange, onError}) {
                         placeholder="Имя"
                         type="text"
                         value={value}
-                        minLenght="2"
-                        maxLenght="30"
+                        minLength="2"
+                        maxLength="30"
                         onError={onError}
                         onValueChange={onChange}
                         validate={validate}

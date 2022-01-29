@@ -10,7 +10,7 @@ function Password({value, onChange, onError}) {
                         title="Пароль"
                         type="password"
                         value={value}
-                        minLenght="8"
+                        minLength="8"
                         onError={onError}
                         onValueChange={onChange}
                         validate={validate}

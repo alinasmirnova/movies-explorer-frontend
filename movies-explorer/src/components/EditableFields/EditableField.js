@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './EditableField.css'
 
-function EditableField({name, title, type, value, placeholder, onValueChange, onError, validate, required = false, minLenght, maxLenght }) {
+function EditableField({name, title, type, value, placeholder, onValueChange, onError, validate, required = false, minLength, maxLength }) {
     const [isValid, setIsValid] = useState(true);
     const [errorText, setErrorText] = useState('');
 
@@ -30,8 +30,8 @@ function EditableField({name, title, type, value, placeholder, onValueChange, on
                 value={value}
                 onChange={handleValueChange}
                 required={required}
-                minLength={minLenght}
-                maxLength={maxLenght}/>
+                minLength={minLength}
+                maxLength={maxLength}/>
             { !isValid && <span className="editable-field__error">{errorText}</span> }
         </div>
     );
