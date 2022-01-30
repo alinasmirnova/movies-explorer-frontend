@@ -5,7 +5,7 @@ import './EditProfile.css';
 import { UserName, Email } from '../EditableFields';
 import UserForm from '../UserForm';
 
-function EditProfile() {
+function EditProfile({loggedIn}) {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [hasErrors, setHasErrors] = useState(false);
@@ -33,7 +33,7 @@ function EditProfile() {
 
     return (
         <div className="edit-profile">
-            <Header isLoggedIn={true} />
+            <Header isLoggedIn={loggedIn} />
             <main className="edit-profile__container">
                 <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" onSubmit={handleSubmit} hasErrors={hasErrors}>
                     <UserName value={userName} onChange={handleNameChange} onError={handleError}/>

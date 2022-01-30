@@ -12,7 +12,7 @@ import { cardsKey, searchErrorMsg, visibleCardsKey } from '../../utils/consts';
 import { getVisibleCards } from '../../utils/cardsHelpers';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 
-function Movies() {
+function Movies({loggedIn}) {
     const [cards, setCards] = useState([]);
     const [visibleCards, setVisibleCards] = useState([]);
     const [showPreloader, setShowPreloader] = useState(false);
@@ -60,7 +60,7 @@ function Movies() {
 
     return (
         <div className="movies">
-            <Header activeTab="movies"/>
+            <Header activeTab="movies" isLoggedIn={loggedIn}/>
             <main className="movies__container">
                 <SearchForm onSubmit={handleSearch}/>
                 { showPreloader && <Preloader /> }

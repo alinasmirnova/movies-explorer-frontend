@@ -5,7 +5,7 @@ import UserForm from '../UserForm';
 import { Email, Password } from '../EditableFields';
 import './Login.css';
 
-function Login() {
+function Login({onLoggedIn}) {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [hasErrors, setHasErrors] = useState(false);

@@ -6,7 +6,7 @@ import List from '../List';
 import Field from './Field';
 import './Profile.css'
 
-function Profile({ onLogout }) {
+function Profile({ onLogout, loggedIn }) {
     const [userInfo, setUserInfo] = useState('');
     const logout = () => {
         onLogout();
@@ -21,7 +21,7 @@ function Profile({ onLogout }) {
 
     return (
         <div className="profile">
-            <Header isLoggedIn={true} />
+            <Header isLoggedIn={loggedIn} />
             <main className="profile__container">
                 <h1 className="profile__name">Привет, {userInfo.name}!</h1>
                 <div className="profile__fields">

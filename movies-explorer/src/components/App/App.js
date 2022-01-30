@@ -12,11 +12,14 @@ import { notFound } from '../../utils/consts';
 import ErrorModal from '../ErrorModal';
 import './App.css';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
+import ProtectedRoute from './ProtectedRoute';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('hello');
     const [loggedIn, setLoggedIn] = React.useState(false);
+    const [currentUser, setCurrentUser] = React.useState();
 
     const handleErrorClose = () => {
         setShowError(false);
@@ -27,8 +30,9 @@ function App() {
         setShowError(true);
     }
 
-    const handleLogIn = () => {
+    const handleLogIn = (user) => {
         setLoggedIn(true);
+        setCurrentUser(user);
     }
 
     const handleLogout = () => {
@@ -37,21 +41,28 @@ function App() {
 
     return (
         <ErrorActionContext.Provider value={handleError}>
-            <div className="body">
-                <div className="body__container">
-                    <Routes>
-                        <Route exact path="/" element={<Main />} />
-                        <Route exact path="/movies" element={<Movies />} />
-                        <Route exact path="/saved-movies" element={<SavedMovies />} />
-                        <Route exact path="/profile" element={<Profile onLogout={handleLogout} />} />
-                        <Route exact path="/edit-profile" element={<EditProfile />} />
-                        <Route exact path="/signup" element={<Register onLoggedIn={handleLogIn}/>} />
-                        <Route exact path="/signin" element={<Login />} />
-                        <Route path="*" element={<ErrorPage error={notFound} />} />
-                    </Routes>
+            <CurrentUserContext.Provider value={currentUser}>
+                <div className="body">
+                    <div className="body__container">
+                        <Routes>
+                            <Route exact path="/" element={<Main loggedIn={loggedIn} />} />
+
+                            <Route exact path="/movies" element={<ProtectedRoute><Movies loggedIn={loggedIn} /></ProtectedRoute>} />
+
+                            <Route exact path="/saved-movies" element={<ProtectedRoute><SavedMovies loggedIn={loggedIn} /></ProtectedRoute>} />
+
+                            <Route exact path="/profile" element={<ProtectedRoute><Profile onLogout={handleLogout} loggedIn={loggedIn} /></ProtectedRoute>} />
+                            
+                            <Route exact path="/edit-profile" element={<ProtectedRoute><EditProfile loggedIn={loggedIn} /></ProtectedRoute>}/>                                          
+                            
+                            <Route exact path="/signup" element={<Register onLoggedIn={handleLogIn} />} />
+                            <Route exact path="/signin" element={<Login onLoggedIn={handleLogIn}/>} />
+                            <Route path="*" element={<ErrorPage error={notFound} />} />
+                        </Routes>
+                    </div>
+                    {showError && <ErrorModal message={errorMessage} onClose={handleErrorClose} />}
                 </div>
-                {showError && <ErrorModal message={errorMessage} onClose={handleErrorClose} />}
-            </div>
+            </CurrentUserContext.Provider>
         </ErrorActionContext.Provider>
     );
 }

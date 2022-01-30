@@ -8,7 +8,7 @@ import SearchForm from '../SearchForm';
 import Preloader from '../Preloader';
 import './SavedMovies.css';
 
-function SavedMovies() {
+function SavedMovies({loggedIn}) {
     const [cards, setCards] = useState([]);
     const [showPreloader, setShowPreloader] = useState(false);
 
@@ -26,7 +26,7 @@ function SavedMovies() {
 
     return (
         <div className="saved-movies">
-            <Header activeTab="saved-movies"/>
+            <Header activeTab="saved-movies" isLoggedIn={loggedIn}/>
             <main className='saved-movies__container'>
                 <SearchForm onSubmit={ handleSearch }/>
                 { showPreloader && <Preloader /> }
