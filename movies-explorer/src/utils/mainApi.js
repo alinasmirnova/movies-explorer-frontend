@@ -27,6 +27,10 @@ function signOut() {
     return postFetch('signout');
 }
 
+function getCurrentUser() {
+    return get('users/me');
+}
+
 function get(subPath) {
     return getJson(fetch(buildUri(subPath), {
         credentials: 'include',
@@ -81,4 +85,5 @@ export {
     signUp,
     signIn,
     signOut,
+    getCurrentUser,
 }

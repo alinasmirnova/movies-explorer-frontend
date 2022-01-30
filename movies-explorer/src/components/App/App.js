@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Main from '../Main';
 import Movies from '../Movies';
 import SavedMovies from '../SavedMovies';
@@ -14,12 +14,32 @@ import './App.css';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
 import ProtectedRoute from './ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { getCurrentUser } from '../../utils/mainApi';
 
 function App() {
     const [showError, setShowError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('hello');
-    const [loggedIn, setLoggedIn] = React.useState(false);
-    const [currentUser, setCurrentUser] = React.useState();
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useState();
+    const navigate = useNavigate();
+
+    const handleLogIn = () => {
+        getCurrentUser()
+        .then((res) => {
+            setCurrentUser(res);
+            setLoggedIn(true);
+        })
+        .catch((err) => {
+            setLoggedIn(false);
+            setCurrentUser(undefined);
+            navigate('/signin');
+        });
+    }
+
+    useEffect(() => {
+        handleLogIn();
+        navigate('/');
+    }, []);
 
     const handleErrorClose = () => {
         setShowError(false);
@@ -28,10 +48,6 @@ function App() {
     const handleError = (err) => {
         setErrorMessage(err.message);
         setShowError(true);
-    }
-
-    const handleLogIn = () => {
-        setLoggedIn(true);
     }
 
     const handleLogout = () => {
@@ -51,11 +67,11 @@ function App() {
                             <Route exact path="/saved-movies" element={<ProtectedRoute loggedIn={loggedIn} component={SavedMovies} />} />
 
                             <Route exact path="/profile" element={<ProtectedRoute loggedIn={loggedIn} onLogout={handleLogout} component={Profile} />} />
-                            
-                            <Route exact path="/edit-profile" element={<ProtectedRoute loggedIn={loggedIn} component={EditProfile} />}/>                                          
-                            
+
+                            <Route exact path="/edit-profile" element={<ProtectedRoute loggedIn={loggedIn} component={EditProfile} />} />
+
                             <Route exact path="/signup" element={<Register onLoggedIn={handleLogIn} />} />
-                            <Route exact path="/signin" element={<Login onLoggedIn={handleLogIn}/>} />
+                            <Route exact path="/signin" element={<Login onLoggedIn={handleLogIn} />} />
                             <Route path="*" element={<ErrorPage error={notFound} />} />
                         </Routes>
                     </div>
