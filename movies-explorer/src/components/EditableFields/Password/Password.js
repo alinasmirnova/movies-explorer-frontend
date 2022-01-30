@@ -1,8 +1,20 @@
 import EditableField from "../EditableField";
 
-function Password({value, onChange, onError}) {
+function Password({value, onChange}) {
     const validate = (value, validity) => {
-        return { isNewValueValid: true, error: '' };
+        if (validity.valid){
+            return { isNewValueValid: true, error: '' };
+        }
+
+        if (validity.valueMissing) {
+            return { isNewValueValid: false, error: 'Введите пароль'}
+        }
+
+        if (validity.tooShort) {
+            return { isNewValueValid: false, error: 'Пароль должен быть не короче 8 символов длиной' }
+        }
+
+        return { isNewValueValid: false, error: 'Некорректное значение' }; 
     }
 
     return (
@@ -11,7 +23,6 @@ function Password({value, onChange, onError}) {
                         type="password"
                         value={value}
                         minLength="8"
-                        onError={onError}
                         onValueChange={onChange}
                         validate={validate}
                         required />

@@ -9,15 +9,10 @@ function Register() {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [hasErrors, setHasErrors] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
     };
-
-    const handleError = (e) => {
-        
-    }
 
     const handleNameChange = (name) => {
         setUserName(name);
@@ -37,10 +32,10 @@ function Register() {
                 <InternalLink className="register__logo" to="/">
                     <img src={logo} alt="Учебный проект" />
                 </InternalLink>
-                <UserForm name="register" title="Добро пожаловать!" submitText="Зарегистрироваться" onSubmit={handleSubmit} hasErrors={hasErrors}>
-                    <UserName value={userName} onChange={handleNameChange} onError={handleError}/>
-                    <Email value={userEmail} onChange={handleEmailChange} onError={handleError}/>
-                    <Password value={userPassword} onChange={handlePasswordChange} onError={handleError}/>
+                <UserForm name="register" title="Добро пожаловать!" submitText="Зарегистрироваться" onSubmit={handleSubmit}>
+                    <UserName value={userName} onChange={handleNameChange}/>
+                    <Email value={userEmail} onChange={handleEmailChange}/>
+                    <Password value={userPassword} onChange={handlePasswordChange}/>
                 </UserForm>
                 <p className="register__enter-text">
                     Уже зарегистрированы?

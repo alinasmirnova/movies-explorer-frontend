@@ -23,6 +23,11 @@
     justify-self: flex-end;
 }
 
+.user-form__submit:disabled {
+    background-color: #f8f8f8;
+    color: #c2c2c2;
+}
+
 @media (max-width: 767px) {
     .user-form {
         width: 260px;

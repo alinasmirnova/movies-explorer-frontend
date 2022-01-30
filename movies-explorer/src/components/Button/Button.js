@@ -1,13 +1,13 @@
 import './Button.css';
 
-function Button({children, className, onClick, type, enabled = true}) {
+function Button({children, className, onClick, type, disabled = false}) {
     return (
         <>
             <button 
                 className={`button ${className}`}
                 onClick={onClick}
                 type={type}
-                enabled={enabled.toString()}>
+                disabled={disabled}>
                     {children}
             </button>
         </>

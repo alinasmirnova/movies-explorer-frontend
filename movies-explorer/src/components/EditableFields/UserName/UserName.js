@@ -1,8 +1,24 @@
 import EditableField from "../EditableField";
 
-function UserName({value, onChange, onError}) {
+function UserName({value, onChange}) {
     const validate = (value, validity) => {
-        return { isNewValueValid: true, error: '' };
+        if (validity.valid){
+            return { isNewValueValid: true, error: '' };
+        }
+
+        if (validity.valueMissing) {
+            return { isNewValueValid: false, error: 'Введите имя'}
+        }
+
+        if (validity.tooLong || validity.tooShort) {
+            return { isNewValueValid: false, error: 'Имя должно быть от 2 до 30 символов длиной' }
+        }
+
+        if (validity.patternMismatch) {
+            return { isNewValueValid: false, error: 'Имя может содержать только латиницу, кириллицу, дефис и пробел'}
+        }
+
+        return { isNewValueValid: false, error: 'Некорректное значение' };            
     }
 
     return (
@@ -13,9 +29,9 @@ function UserName({value, onChange, onError}) {
                         value={value}
                         minLength="2"
                         maxLength="30"
-                        onError={onError}
                         onValueChange={onChange}
                         validate={validate}
+                        pattern="[A-Za-zА-Яа-яёЁ -]*"
                         required />
     );
 }
