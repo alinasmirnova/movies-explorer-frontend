@@ -30,9 +30,8 @@ function App() {
         setShowError(true);
     }
 
-    const handleLogIn = (user) => {
+    const handleLogIn = () => {
         setLoggedIn(true);
-        setCurrentUser(user);
     }
 
     const handleLogout = () => {
@@ -47,13 +46,13 @@ function App() {
                         <Routes>
                             <Route exact path="/" element={<Main loggedIn={loggedIn} />} />
 
-                            <Route exact path="/movies" element={<ProtectedRoute><Movies loggedIn={loggedIn} /></ProtectedRoute>} />
+                            <Route exact path="/movies" element={<ProtectedRoute loggedIn={loggedIn} component={Movies} />} />
 
-                            <Route exact path="/saved-movies" element={<ProtectedRoute><SavedMovies loggedIn={loggedIn} /></ProtectedRoute>} />
+                            <Route exact path="/saved-movies" element={<ProtectedRoute loggedIn={loggedIn} component={SavedMovies} />} />
 
-                            <Route exact path="/profile" element={<ProtectedRoute><Profile onLogout={handleLogout} loggedIn={loggedIn} /></ProtectedRoute>} />
+                            <Route exact path="/profile" element={<ProtectedRoute loggedIn={loggedIn} onLogout={handleLogout} component={Profile} />} />
                             
-                            <Route exact path="/edit-profile" element={<ProtectedRoute><EditProfile loggedIn={loggedIn} /></ProtectedRoute>}/>                                          
+                            <Route exact path="/edit-profile" element={<ProtectedRoute loggedIn={loggedIn} component={EditProfile} />}/>                                          
                             
                             <Route exact path="/signup" element={<Register onLoggedIn={handleLogIn} />} />
                             <Route exact path="/signin" element={<Login onLoggedIn={handleLogIn}/>} />

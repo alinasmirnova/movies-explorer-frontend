@@ -33,7 +33,7 @@ function Register({onLoggedIn}) {
         })
         .catch((err) => {
             setSubmitErrorText(err.message);
-        })
+        });
     };
 
     const handleNameChange = (name) => {
