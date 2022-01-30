@@ -28,6 +28,14 @@
     color: #c2c2c2;
 }
 
+.user-form__submit-error {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF4062;
+}
+
 @media (max-width: 767px) {
     .user-form {
         width: 260px;

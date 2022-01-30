@@ -16,6 +16,7 @@ import ErrorActionContext from '../../contexts/ErrorActionContext';
 function App() {
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('hello');
+    const [loggedIn, setLoggedIn] = React.useState(false);
 
     const handleErrorClose = () => {
         setShowError(false);
@@ -24,6 +25,10 @@ function App() {
     const handleError = (err) => {
         setErrorMessage(err.message);
         setShowError(true);
+    }
+
+    const handleLogIn = () => {
+        setLoggedIn(true);
     }
 
     const handleLogout = () => {
@@ -40,7 +45,7 @@ function App() {
                         <Route exact path="/saved-movies" element={<SavedMovies />} />
                         <Route exact path="/profile" element={<Profile onLogout={handleLogout} />} />
                         <Route exact path="/edit-profile" element={<EditProfile />} />
-                        <Route exact path="/signup" element={<Register />} />
+                        <Route exact path="/signup" element={<Register onLoggedIn={handleLogIn}/>} />
                         <Route exact path="/signin" element={<Login />} />
                         <Route path="*" element={<ErrorPage error={notFound} />} />
                     </Routes>

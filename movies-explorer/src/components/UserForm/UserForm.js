@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button from '../Button';
 import './UserForm.css'
 
-function UserForm({ name, title, children, submitText, onSubmit }) {
+function UserForm({ name, title, children, submitText, onSubmit, submitErrorText }) {
     const [hasErrors, setHasErrors] = useState(true);
     const [loaded, setLoaded] = useState(false);
     const fieldsValid = useRef();
@@ -34,6 +34,7 @@ function UserForm({ name, title, children, submitText, onSubmit }) {
                     })
                 })}
             </div>
+            <span className="user-form__submit-error">{submitErrorText}</span>
             <Button className="user-form__submit" type="submit" onClick={onSubmit} disabled={hasErrors}>{submitText}</Button>
         </form>
     );

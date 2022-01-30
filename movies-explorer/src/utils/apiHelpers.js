@@ -1,10 +1,8 @@
 function getJson(promise) {
-    return promise.then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
+    return promise.then(response => {
+        return response.json().then(json => {
+            return response.ok ? json : Promise.reject(json);
+          });
     });
 }
 
