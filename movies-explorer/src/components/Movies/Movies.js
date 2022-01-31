@@ -11,24 +11,59 @@ import ErrorActionContext from '../../contexts/ErrorActionContext';
 import { cardsKey, searchErrorMsg, visibleCardsKey } from '../../utils/consts';
 import { getVisibleCards } from '../../utils/cardsHelpers';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
+import { deleteMovie, getSavedMovies, saveMovie } from '../../utils/mainApi';
 
 function Movies({loggedIn}) {
     const [cards, setCards] = useState([]);
     const [visibleCards, setVisibleCards] = useState([]);
+    const [savedCards, setSavedCards] = useState([]);
     const [showPreloader, setShowPreloader] = useState(false);
     const onError = React.useContext(ErrorActionContext);
 
     useEffect(() => {
         setCards(fromLocalStorage(cardsKey) ?? []);
         setVisibleCards(fromLocalStorage(visibleCardsKey) ?? []);
+        updateSavedCards();
     }, []);
 
-    const handleCardLike = () => {
+    const updateSavedCards = () => {
+        getSavedMovies()
+            .then((res) => {
+                setSavedCards(res);
+            })
+            .catch((err) => {
+                onError(err);
+            });
+    }
 
+    const handleCardLike = (card) => {
+        if (card.isSaved) {
+            deleteMovie(card.id)
+                .then((res) => {
+                    updateSavedCards();
+                    card.isSaved = false;
+                    updateVisibleCards(visibleCards);
+                })
+                .catch((err) => {
+                    onError(err);
+                })
+        }
+        else {
+            saveMovie(card)
+                .then((res) => {
+                    updateSavedCards();
+                    card.isSaved = true;
+                    card.id = res.id;
+                    updateVisibleCards(visibleCards);
+                })
+                .catch((err) => {
+                    onError(err);
+                });
+        }
     }
 
     const getMore = () => {
-        updateVisibleCards(getVisibleCards(cards, visibleCards));
+        updateVisibleCards(getVisibleCards(cards, savedCards, visibleCards));
     }
 
     const handleSearch = (keyword, shortsOnly) => {
@@ -36,7 +71,7 @@ function Movies({loggedIn}) {
         getMovies(keyword, shortsOnly)
         .then((res) => {    
             updateCards(res);
-            updateVisibleCards(getVisibleCards(res, []))
+            updateVisibleCards(getVisibleCards(res, savedCards, []))
         })
         .catch((err) => {
             updateCards([]);

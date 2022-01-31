@@ -1,12 +1,13 @@
 import { getJson } from "./apiHelpers";
 
-let baseUri;
-if (document.documentURI.startsWith('https')) {
-    baseUri = 'https://api.asmirnova.movies.nomoredomains.rocks';  
-}
-else {
-    baseUri = 'http://api.asmirnova.movies.nomoredomains.rocks';  
-}
+let baseUri = 'http://localhost:3001';
+// let baseUri;
+// if (document.documentURI.startsWith('https')) {
+//     baseUri = 'https://api.asmirnova.movies.nomoredomains.rocks';  
+// }
+// else {
+//     baseUri = 'http://api.asmirnova.movies.nomoredomains.rocks';  
+// }
 
 function signUp({ name, email, password }) {
     return post('signup', {
@@ -29,6 +30,20 @@ function signOut() {
 
 function getCurrentUser() {
     return get('users/me');
+}
+
+function getSavedMovies() {
+    return get('movies');
+}
+
+function saveMovie({ country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId }) {
+    return post('movies', {
+        country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId
+    });
+}
+
+function deleteMovie(id) {
+    return deleteMethod(`movies/${id}`);
 }
 
 function get(subPath) {
@@ -86,4 +101,8 @@ export {
     signIn,
     signOut,
     getCurrentUser,
+
+    getSavedMovies,
+    saveMovie,
+    deleteMovie,
 }

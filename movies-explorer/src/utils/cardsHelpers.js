@@ -1,4 +1,16 @@
-function getVisibleCards(cards, current) {
+function getVisibleCards(cards, savedCards, current) {
+    return getPage(cards, current)
+        .map(card => {
+            const saved = savedCards.find(s => card.movieId === s.movieId)
+            return {
+                ...card,
+                isSaved: saved !== undefined,
+                id: saved ? saved._id : undefined
+            }
+        })
+}
+
+function getPage(cards, current) {
     var row = getCardsCountInRow();
     var first = getFirstCardsCount();
     var cur = current.length;
