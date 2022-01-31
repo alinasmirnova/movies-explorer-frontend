@@ -8,7 +8,7 @@ import Preloader from '../Preloader';
 import './Movies.css';
 import { getMovies } from '../../utils/moviesApi';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
-import { cardsKey, searchErrorMsg, visibleCardsKey } from '../../utils/consts';
+import { cardsKey, searchErrorMsg, searchTextKey, shortsOnlyKey, visibleCardsCountKey } from '../../utils/consts';
 import { getVisibleCards } from '../../utils/cardsHelpers';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import { deleteMovie, getSavedMovies, saveMovie } from '../../utils/mainApi';
@@ -21,8 +21,9 @@ function Movies({loggedIn}) {
     const onError = React.useContext(ErrorActionContext);
 
     useEffect(() => {
-        setCards(fromLocalStorage(cardsKey) ?? []);
-        setVisibleCards(fromLocalStorage(visibleCardsKey) ?? []);
+        const all = fromLocalStorage(cardsKey) ?? []; 
+        setCards(all);
+        setVisibleCards(all.splice(0, fromLocalStorage(visibleCardsCountKey) ?? 0));
         updateSavedCards();
     }, []);
 
@@ -90,14 +91,14 @@ function Movies({loggedIn}) {
 
     const updateVisibleCards = (visible) => {
         setVisibleCards(visible);
-        toLocalStorage(visibleCardsKey, visible);
+        toLocalStorage(visibleCardsCountKey, visible.length);
     }
 
     return (
         <div className="movies">
             <Header activeTab="movies" isLoggedIn={loggedIn}/>
             <main className="movies__container">
-                <SearchForm onSubmit={handleSearch}/>
+                <SearchForm onSubmit={handleSearch} storageTextKey={searchTextKey} storageShortsOnlyKey={shortsOnlyKey} required={true}/>
                 { showPreloader && <Preloader /> }
                 { !showPreloader && cards.length > 0 &&
                     <>                

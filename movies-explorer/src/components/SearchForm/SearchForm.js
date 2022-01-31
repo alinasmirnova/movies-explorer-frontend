@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
-import { keywordMissingMsg, searchTextKey } from '../../utils/consts';
+import { keywordMissingMsg } from '../../utils/consts';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm({ onSubmit }) {
+function SearchForm({ onSubmit, storageTextKey, storageSearchOnlyKey: storageShortsOnlyKey, required }) {
     const [value, setValue] = useState('');
     const [shortsOnly, setShortsOnly] = useState(false);
     const [errorText, setErrorText] = useState('');
 
     useEffect(() => {
-        setValue(fromLocalStorage(searchTextKey) ?? '');
+        setValue(fromLocalStorage(storageTextKey) ?? '');
+        setShortsOnly(fromLocalStorage(storageShortsOnlyKey) ?? false);
     }, []);
 
     const handleValueChange = (e) => {
@@ -26,8 +27,9 @@ function SearchForm({ onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        toLocalStorage(searchTextKey, value);
-        if (value === '') {
+        toLocalStorage(storageTextKey, value);
+        toLocalStorage(storageShortsOnlyKey, shortsOnly);
+        if (value === '' && required) {
             setErrorText(keywordMissingMsg);
         }
         else {
@@ -38,7 +40,7 @@ function SearchForm({ onSubmit }) {
     return (
         <form name="search-films" className="search-form">
             <div className="search-form__container">
-                <input name="title" className="search-form__input" type="text" placeholder="Фильм" value={value} onChange={handleValueChange} required/>
+                <input name="title" className="search-form__input" type="text" placeholder="Фильм" value={value} onChange={handleValueChange} required={required}/>
                 <Button className="search-form__submit" type="submit" onClick={handleSubmit}>Поиск</Button>
                 <span className="search-form__error">{errorText}</span>
             </div>

@@ -1,9 +1,12 @@
 function toLocalStorage(key, obj) {
-    localStorage.setItem(key, JSON.stringify(obj));
+    if (key)
+        localStorage.setItem(key, JSON.stringify(obj));
 }
 
 function fromLocalStorage(key) {
-    return JSON.parse(localStorage.getItem(key));
+    if (key)
+        return JSON.parse(localStorage.getItem(key));
+    return undefined;
 }
 
 export {

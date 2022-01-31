@@ -7,8 +7,9 @@ const keywordMissingMsg = 'Нужно ввести ключевое слово';
 const searchErrorMsg = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
 
 const cardsKey = 'cards';
-const visibleCardsKey = 'visibleCards';
+const visibleCardsCountKey = 'visibleCardsCount';
 const searchTextKey = 'searchText';
+const shortsOnlyKey = 'shortsOnly';
 export {
     notFound,
 
@@ -16,6 +17,7 @@ export {
     searchErrorMsg,
 
     cardsKey,
-    visibleCardsKey,
+    visibleCardsCountKey,
     searchTextKey,
+    shortsOnlyKey,
 };
