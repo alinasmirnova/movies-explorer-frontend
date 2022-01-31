@@ -32,6 +32,13 @@ function getCurrentUser() {
     return get('users/me');
 }
 
+function updateCurrentUser({ name, email }) {
+    return patch('users/me', {
+        name: name,
+        email: email,
+    })
+}
+
 function getSavedMovies() {
     return get('movies');
 }
@@ -63,12 +70,6 @@ function patch(subPath, body) {
     }));
 }
 
-function put(subPath) {
-    return getJson(fetch(buildUri(subPath), {
-        method: 'PUT',
-        credentials: 'include',
-    }));
-}
 
 function post(subPath, body) {
     return getJson(postFetch(subPath, body));
@@ -101,6 +102,7 @@ export {
     signIn,
     signOut,
     getCurrentUser,
+    updateCurrentUser,
 
     getSavedMovies,
     saveMovie,

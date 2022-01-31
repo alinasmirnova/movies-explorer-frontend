@@ -14,7 +14,7 @@ import './App.css';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
 import ProtectedRoute from './ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { getCurrentUser, signOut } from '../../utils/mainApi';
+import { getCurrentUser, signOut, updateCurrentUser } from '../../utils/mainApi';
 
 function App() {
     const [showError, setShowError] = useState(false);
@@ -65,6 +65,13 @@ function App() {
         localStorage.clear();
     }
 
+    const handleEditProfile = ({name, email}) => {
+        return updateCurrentUser({name, email})
+            .then((res) => {
+                setCurrentUser(res);
+            });            
+    }
+
     return (
         <ErrorActionContext.Provider value={handleError}>
             <CurrentUserContext.Provider value={currentUser}>
@@ -79,7 +86,7 @@ function App() {
 
                             <Route exact path="/profile" element={<ProtectedRoute loggedIn={loggedIn} onLogout={handleLogout} component={Profile} />} />
 
-                            <Route exact path="/edit-profile" element={<ProtectedRoute loggedIn={loggedIn} component={EditProfile} />} />
+                            <Route exact path="/edit-profile" element={<ProtectedRoute loggedIn={loggedIn} onSubmit={handleEditProfile} component={EditProfile} />} />
 
                             <Route exact path="/signup" element={<Register onLoggedIn={handleLogIn} />} />
                             <Route exact path="/signin" element={<Login onLoggedIn={handleLogIn} />} />
