@@ -21,7 +21,7 @@ function SearchForm({ onSubmit }) {
     }
 
     const handleShortsOnlyChange = (e) => {
-        setShortsOnly(e.target.value);
+        setShortsOnly(e.target.checked);
     }
 
     const handleSubmit = (e) => {
