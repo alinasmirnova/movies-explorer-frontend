@@ -31,9 +31,7 @@ function App() {
             navigate('/movies');
         })
         .catch((err) => {
-            setLoggedIn(false);
-            setCurrentUser(undefined);
-            navigate('/');
+            logout();
         });
     }
 
@@ -53,13 +51,18 @@ function App() {
     const handleLogout = () => {
         signOut()
             .then((res) => {
-                navigate('/');
-                setLoggedIn(false);
-                setCurrentUser(undefined);
+                logout();
             })
             .catch((err) => {
                 handleError(err);
             })
+    }
+
+    const logout = () => {
+        navigate('/');
+        setLoggedIn(false);
+        setCurrentUser(undefined);
+        localStorage.clear();
     }
 
     return (
