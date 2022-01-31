@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import Header from '../Header';
 import './EditProfile.css';
 import { UserName, Email } from '../EditableFields';
@@ -21,8 +21,7 @@ function EditProfile({loggedIn, onSubmit}) {
         })
         .catch((err) => {
             setSubmitErrorText(err.message);
-        });
-        
+        });        
     };
 
     const handleNameChange = (name) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import MoviesList from '../MoviesList';
@@ -21,16 +21,7 @@ function Movies({loggedIn}) {
     const [searched, setSearched] = useState(false);
     const onError = React.useContext(ErrorActionContext);
 
-    useEffect(() => {
-        const all = fromLocalStorage(cardsKey) ?? []; 
-        setCards(all);
-        const visibleCount = fromLocalStorage(visibleCardsCountKey) ?? 0;
-        setVisibleCards(all.slice(0, visibleCount));
-        updateSavedCards();
-        setSearched(visibleCount > 0);
-    }, []);
-
-    const updateSavedCards = () => {
+    const updateSavedCards = useCallback(() => {
         getSavedMovies()
             .then((res) => {
                 setSavedCards(res);
@@ -38,7 +29,16 @@ function Movies({loggedIn}) {
             .catch((err) => {
                 onError(err);
             });
-    }
+    }, [onError]);
+
+    useEffect(() => {
+        const all = fromLocalStorage(cardsKey) ?? []; 
+        setCards(all);
+        const visibleCount = fromLocalStorage(visibleCardsCountKey) ?? 0;
+        setVisibleCards(all.slice(0, visibleCount));
+        updateSavedCards();
+        setSearched(visibleCount > 0);
+    }, [updateSavedCards]);
 
     const handleCardLike = (card) => {
         if (card.isSaved) {

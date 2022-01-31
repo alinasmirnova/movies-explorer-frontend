@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Main from '../Main';
 import Movies from '../Movies';
@@ -15,29 +15,37 @@ import ErrorActionContext from '../../contexts/ErrorActionContext';
 import ProtectedRoute from './ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { getCurrentUser, signOut, updateCurrentUser } from '../../utils/mainApi';
+import { useCallback } from 'react/cjs/react.development';
 
 function App() {
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState();
-    const navigate = useNavigate();
+    const navigate = useRef(useNavigate());
 
-    const handleLogIn = () => {
+    const logout = useCallback(() => {
+        navigate.current('/');
+        setLoggedIn(false);
+        setCurrentUser(undefined);
+        localStorage.clear();
+    }, [navigate]);
+
+    const handleLogIn = useCallback(() => {
         getCurrentUser()
         .then((res) => {
             setCurrentUser(res);
             setLoggedIn(true);
-            navigate('/movies');
+            navigate.current('/movies');
         })
         .catch((err) => {
             logout();
         });
-    }
+    }, [navigate, logout]);
 
     useEffect(() => {
         handleLogIn();
-    }, []);
+    }, [handleLogIn]);
 
     const handleErrorClose = () => {
         setShowError(false);
@@ -56,13 +64,6 @@ function App() {
             .catch((err) => {
                 handleError(err);
             })
-    }
-
-    const logout = () => {
-        navigate('/');
-        setLoggedIn(false);
-        setCurrentUser(undefined);
-        localStorage.clear();
     }
 
     const handleEditProfile = ({name, email}) => {

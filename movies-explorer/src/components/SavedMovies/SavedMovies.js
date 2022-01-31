@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
-import demoCards from '../../utils/demoCards';
 import Footer from '../Footer';
 import Header from '../Header';
 import MoviesList from '../MoviesList';
@@ -18,12 +17,7 @@ function SavedMovies({loggedIn}) {
     const [currentFilter, setCurrentFilter] = useState({keyword: '', shortsOnly: false});
     const onError = useContext(ErrorActionContext);
 
-    useEffect(() => {
-        setShowPreloader(true);
-        updateCards();
-    }, []);
-
-    const updateCards = () => {
+    const updateCards = useCallback(() => {
         getSavedMovies()
             .then((res) => {
                 setCards(res);
@@ -35,7 +29,12 @@ function SavedMovies({loggedIn}) {
             .finally(() => {
                 setShowPreloader(false);
             });
-    }
+    }, [onError]);
+
+    useEffect(() => {
+        setShowPreloader(true);
+        updateCards();
+    }, [updateCards]);
 
     const handleCardDelete = (card) => {
         deleteMovie(card._id)

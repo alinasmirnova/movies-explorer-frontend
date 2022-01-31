@@ -6,7 +6,7 @@ import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm({ onSubmit, storageTextKey, storageSearchOnlyKey: storageShortsOnlyKey, required }) {
+function SearchForm({ onSubmit, storageTextKey, storageShortsOnlyKey, required }) {
     const [value, setValue] = useState('');
     const [shortsOnly, setShortsOnly] = useState(false);
     const [errorText, setErrorText] = useState('');
@@ -14,7 +14,7 @@ function SearchForm({ onSubmit, storageTextKey, storageSearchOnlyKey: storageSho
     useEffect(() => {
         setValue(fromLocalStorage(storageTextKey) ?? '');
         setShortsOnly(fromLocalStorage(storageShortsOnlyKey) ?? false);
-    }, []);
+    }, [storageTextKey, storageShortsOnlyKey]);
 
     const handleValueChange = (e) => {
         setValue(e.target.value);
