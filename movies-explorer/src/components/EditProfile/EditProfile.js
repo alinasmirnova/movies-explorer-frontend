@@ -32,11 +32,15 @@ function EditProfile({loggedIn, onSubmit}) {
         setUserEmail(email);
     }
 
+    const userInfoChanged = () => {
+        return currentUser.name !== userName || currentUser.email !== userEmail;
+    }
+
     return (
         <div className="edit-profile">
             <Header isLoggedIn={loggedIn} />
             <main className="edit-profile__container">
-                <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" onSubmit={handleSubmit} submitErrorText={submitErrorText}>
+                <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" canSubmit={userInfoChanged()} onSubmit={handleSubmit} submitErrorText={submitErrorText}>
                     <UserName value={userName} onChange={handleNameChange}/>
                     <Email value={userEmail} onChange={handleEmailChange}/>
                 </UserForm>
