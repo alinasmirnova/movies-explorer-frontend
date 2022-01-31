@@ -20,7 +20,7 @@ import { useCallback } from 'react/cjs/react.development';
 function App() {
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
     const [currentUser, setCurrentUser] = useState();
     const navigate = useRef(useNavigate());
 
@@ -31,7 +31,7 @@ function App() {
         localStorage.clear();
     }, [navigate]);
 
-    const handleLogIn = useCallback(() => {
+    const handleLogIn = () => {
         getCurrentUser()
         .then((res) => {
             setCurrentUser(res);
@@ -41,11 +41,18 @@ function App() {
         .catch((err) => {
             logout();
         });
-    }, [navigate, logout]);
+    };
 
     useEffect(() => {
-        handleLogIn();
-    }, [handleLogIn]);
+        getCurrentUser()
+        .then((res) => {
+            setCurrentUser(res);
+            setLoggedIn(true);
+        })
+        .catch((err) => {
+            logout();
+        });
+    }, [logout]);
 
     const handleErrorClose = () => {
         setShowError(false);
