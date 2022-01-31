@@ -14,7 +14,7 @@ import './App.css';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
 import ProtectedRoute from './ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { getCurrentUser } from '../../utils/mainApi';
+import { getCurrentUser, signOut } from '../../utils/mainApi';
 
 function App() {
     const [showError, setShowError] = useState(false);
@@ -28,17 +28,17 @@ function App() {
         .then((res) => {
             setCurrentUser(res);
             setLoggedIn(true);
+            navigate('/movies');
         })
         .catch((err) => {
             setLoggedIn(false);
             setCurrentUser(undefined);
-            navigate('/signin');
+            navigate('/');
         });
     }
 
     useEffect(() => {
         handleLogIn();
-        navigate('/');
     }, []);
 
     const handleErrorClose = () => {
@@ -51,7 +51,15 @@ function App() {
     }
 
     const handleLogout = () => {
-
+        signOut()
+            .then((res) => {
+                navigate('/');
+                setLoggedIn(false);
+                setCurrentUser(undefined);
+            })
+            .catch((err) => {
+                handleError(err);
+            })
     }
 
     return (
