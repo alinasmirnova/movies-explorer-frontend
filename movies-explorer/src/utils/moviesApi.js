@@ -6,7 +6,7 @@ const imageBaseUri = 'https://api.nomoreparties.co/';
 
 function getMovies(keyword, shortsOnly) {
    return getJson(fetch(moviesUri))
-   .then(res => filter(res, keyword))
+   .then(res => filter(res, keyword, shortsOnly))
    .then(res => res.map((movie) => {
         return {
         country: movie.country,

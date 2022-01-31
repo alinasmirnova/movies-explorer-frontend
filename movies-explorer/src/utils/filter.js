@@ -1,5 +1,5 @@
-function filter(movies, keyword) {
-    return movies.filter((movie) => movie.nameRU.toLowerCase().includes(keyword.toLowerCase()))
+function filter(movies, keyword, shortsOnly) {
+    return movies.filter((movie) => (!shortsOnly || movie.duration <= 40) && movie.nameRU.toLowerCase().includes(keyword.toLowerCase()))
 }
 
 export {
