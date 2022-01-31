@@ -23,7 +23,8 @@ function Movies({loggedIn}) {
     useEffect(() => {
         const all = fromLocalStorage(cardsKey) ?? []; 
         setCards(all);
-        setVisibleCards(all.splice(0, fromLocalStorage(visibleCardsCountKey) ?? 0));
+        const visibleCount = fromLocalStorage(visibleCardsCountKey) ?? 0;
+        setVisibleCards(all.slice(0, visibleCount));
         updateSavedCards();
     }, []);
 
