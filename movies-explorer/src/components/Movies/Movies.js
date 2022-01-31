@@ -15,9 +15,10 @@ import { deleteMovie, getSavedMovies, saveMovie } from '../../utils/mainApi';
 
 function Movies({loggedIn}) {
     const [cards, setCards] = useState([]);
-    const [visibleCards, setVisibleCards] = useState([]);
+    const [visibleCards, setVisibleCards] = useState();
     const [savedCards, setSavedCards] = useState([]);
     const [showPreloader, setShowPreloader] = useState(false);
+    const [searched, setSearched] = useState(false);
     const onError = React.useContext(ErrorActionContext);
 
     useEffect(() => {
@@ -26,6 +27,7 @@ function Movies({loggedIn}) {
         const visibleCount = fromLocalStorage(visibleCardsCountKey) ?? 0;
         setVisibleCards(all.slice(0, visibleCount));
         updateSavedCards();
+        setSearched(visibleCount > 0);
     }, []);
 
     const updateSavedCards = () => {
@@ -69,6 +71,7 @@ function Movies({loggedIn}) {
     }
 
     const handleSearch = (keyword, shortsOnly) => {
+        setSearched(true);
         setShowPreloader(true);
         getMovies(keyword, shortsOnly)
         .then((res) => {    
@@ -107,7 +110,7 @@ function Movies({loggedIn}) {
                         { cards.length > visibleCards.length && <Button className="movies__more-button" onClick={getMore}>Ещё</Button> }
                     </>
                 }
-                { !showPreloader && cards.length === 0 &&
+                { searched && !showPreloader && cards.length === 0 &&
                     <p className="movies__nothing-found">Ничего не найдено</p>
                 }
             </main>
