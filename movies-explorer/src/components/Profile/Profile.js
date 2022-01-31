@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Button from '../Button';
 import Header from '../Header';
 import InternalLink from '../InternalLink';
@@ -7,17 +8,10 @@ import Field from './Field';
 import './Profile.css'
 
 function Profile({ onLogout, loggedIn }) {
-    const [userInfo, setUserInfo] = useState('');
+    const userInfo = useContext(CurrentUserContext);
     const logout = () => {
         onLogout();
     };
-
-    useEffect(() => {
-        setUserInfo({ 
-            name: 'Виталий',
-            email: 'pochta@yandex.ru'
-        })
-    }, []);
 
     return (
         <div className="profile">
