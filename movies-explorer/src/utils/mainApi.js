@@ -1,13 +1,12 @@
 import { getJson } from "./apiHelpers";
 
-let baseUri = 'http://localhost:3001';
-// let baseUri;
-// if (document.documentURI.startsWith('https')) {
-//     baseUri = 'https://api.asmirnova.movies.nomoredomains.rocks';  
-// }
-// else {
-//     baseUri = 'http://api.asmirnova.movies.nomoredomains.rocks';  
-// }
+let baseUri;
+if (document.documentURI.startsWith('https')) {
+    baseUri = 'https://api.asmirnova.movies.nomoredomains.rocks';  
+}
+else {
+    baseUri = 'http://api.asmirnova.movies.nomoredomains.rocks';  
+}
 
 function signUp({ name, email, password }) {
     return post('signup', {
