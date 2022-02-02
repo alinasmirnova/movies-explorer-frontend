@@ -8,7 +8,7 @@ import EditProfile from '../EditProfile';
 import Register from '../Register';
 import Login from '../Login';
 import ErrorPage from '../ErrorPage';
-import { notFound } from '../../utils/consts';
+import { NOT_FOUND } from '../../utils/consts';
 import ErrorModal from '../ErrorModal';
 import './App.css';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
@@ -98,7 +98,7 @@ function App() {
 
                             <Route exact path="/signup" element={<Register onLoggedIn={handleLogIn} />} />
                             <Route exact path="/signin" element={<Login onLoggedIn={handleLogIn} />} />
-                            <Route path="*" element={<ErrorPage error={notFound} />} />
+                            <Route path="*" element={<ErrorPage error={NOT_FOUND} />} />
                         </Routes>
                     </div>
                     {showError && <ErrorModal message={errorMessage} onClose={handleErrorClose} />}

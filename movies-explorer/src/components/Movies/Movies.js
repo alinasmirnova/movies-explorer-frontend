@@ -8,7 +8,7 @@ import Preloader from '../Preloader';
 import './Movies.css';
 import { getMovies } from '../../utils/moviesApi';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
-import { cardsKey, searchErrorMsg, searchTextKey, shortsOnlyKey, visibleCardsCountKey } from '../../utils/consts';
+import { CARDS_KEY, SEARCH_ERROR_MSG, SEARCH_TEXT_KEY, SHORTS_ONLY_KEY, VISIBLE_CARDS_COUNT_KEY } from '../../utils/consts';
 import { getVisibleCards } from '../../utils/cardsHelpers';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import { deleteMovie, getSavedMovies, saveMovie } from '../../utils/mainApi';
@@ -32,9 +32,9 @@ function Movies({loggedIn}) {
     }, [onError]);
 
     useEffect(() => {
-        const all = fromLocalStorage(cardsKey) ?? []; 
+        const all = fromLocalStorage(CARDS_KEY) ?? []; 
         setCards(all);
-        const visibleCount = fromLocalStorage(visibleCardsCountKey) ?? 0;
+        const visibleCount = fromLocalStorage(VISIBLE_CARDS_COUNT_KEY) ?? 0;
         setVisibleCards(all.slice(0, visibleCount));
         updateSavedCards();
         setSearched(visibleCount > 0);
@@ -81,7 +81,7 @@ function Movies({loggedIn}) {
         .catch((err) => {
             updateCards([]);
             updateVisibleCards([])
-            onError({ message: searchErrorMsg });
+            onError({ message: SEARCH_ERROR_MSG });
         })
         .finally(() => {
             setShowPreloader(false);            
@@ -90,19 +90,19 @@ function Movies({loggedIn}) {
 
     const updateCards = (all) => {
         setCards(all);
-        toLocalStorage(cardsKey, all);     
+        toLocalStorage(CARDS_KEY, all);     
     }
 
     const updateVisibleCards = (visible) => {
         setVisibleCards(visible);
-        toLocalStorage(visibleCardsCountKey, visible.length);
+        toLocalStorage(VISIBLE_CARDS_COUNT_KEY, visible.length);
     }
 
     return (
         <div className="movies">
             <Header activeTab="movies" isLoggedIn={loggedIn}/>
             <main className="movies__container">
-                <SearchForm onSubmit={handleSearch} storageTextKey={searchTextKey} storageShortsOnlyKey={shortsOnlyKey} required={true}/>
+                <SearchForm onSubmit={handleSearch} storageTextKey={SEARCH_TEXT_KEY} storageSHORTS_ONLY_KEY={SHORTS_ONLY_KEY} required={true}/>
                 { showPreloader && <Preloader /> }
                 { !showPreloader && cards.length > 0 &&
                     <>                

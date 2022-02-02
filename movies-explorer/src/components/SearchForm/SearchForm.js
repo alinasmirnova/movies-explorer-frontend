@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
-import { keywordMissingMsg } from '../../utils/consts';
+import { KEYWORD_MISSING_MSG } from '../../utils/consts';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm({ onSubmit, storageTextKey, storageShortsOnlyKey, required }) {
+function SearchForm({ onSubmit, storageTextKey, storageSHORTS_ONLY_KEY, required }) {
     const [value, setValue] = useState('');
     const [shortsOnly, setShortsOnly] = useState(false);
     const [errorText, setErrorText] = useState('');
 
     useEffect(() => {
         setValue(fromLocalStorage(storageTextKey) ?? '');
-        setShortsOnly(fromLocalStorage(storageShortsOnlyKey) ?? false);
-    }, [storageTextKey, storageShortsOnlyKey]);
+        setShortsOnly(fromLocalStorage(storageSHORTS_ONLY_KEY) ?? false);
+    }, [storageTextKey, storageSHORTS_ONLY_KEY]);
 
     const handleValueChange = (e) => {
         setValue(e.target.value);
@@ -28,9 +28,9 @@ function SearchForm({ onSubmit, storageTextKey, storageShortsOnlyKey, required }
     const handleSubmit = (e) => {
         e.preventDefault();
         toLocalStorage(storageTextKey, value);
-        toLocalStorage(storageShortsOnlyKey, shortsOnly);
+        toLocalStorage(storageSHORTS_ONLY_KEY, shortsOnly);
         if (value === '' && required) {
-            setErrorText(keywordMissingMsg);
+            setErrorText(KEYWORD_MISSING_MSG);
         }
         else {
             onSubmit(value, shortsOnly);
