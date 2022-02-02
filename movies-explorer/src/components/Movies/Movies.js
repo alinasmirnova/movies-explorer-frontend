@@ -102,7 +102,7 @@ function Movies({loggedIn}) {
         <div className="movies">
             <Header activeTab="movies" isLoggedIn={loggedIn}/>
             <main className="movies__container">
-                <SearchForm onSubmit={handleSearch} storageTextKey={SEARCH_TEXT_KEY} storageSHORTS_ONLY_KEY={SHORTS_ONLY_KEY} required={true}/>
+                <SearchForm onSubmit={handleSearch} storageTextKey={SEARCH_TEXT_KEY} storageShortsOnlyKey={SHORTS_ONLY_KEY} required={true}/>
                 { showPreloader && <Preloader /> }
                 { !showPreloader && cards.length > 0 &&
                     <>                

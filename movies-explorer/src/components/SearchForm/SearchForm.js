@@ -6,15 +6,15 @@ import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm({ onSubmit, storageTextKey, storageSHORTS_ONLY_KEY, required }) {
+function SearchForm({ onSubmit, storageTextKey, storageShortsOnlyKey, required }) {
     const [value, setValue] = useState('');
     const [shortsOnly, setShortsOnly] = useState(false);
     const [errorText, setErrorText] = useState('');
 
     useEffect(() => {
         setValue(fromLocalStorage(storageTextKey) ?? '');
-        setShortsOnly(fromLocalStorage(storageSHORTS_ONLY_KEY) ?? false);
-    }, [storageTextKey, storageSHORTS_ONLY_KEY]);
+        setShortsOnly(fromLocalStorage(storageShortsOnlyKey) ?? false);
+    }, [storageTextKey, storageShortsOnlyKey]);
 
     const handleValueChange = (e) => {
         setValue(e.target.value);
@@ -28,7 +28,7 @@ function SearchForm({ onSubmit, storageTextKey, storageSHORTS_ONLY_KEY, required
     const handleSubmit = (e) => {
         e.preventDefault();
         toLocalStorage(storageTextKey, value);
-        toLocalStorage(storageSHORTS_ONLY_KEY, shortsOnly);
+        toLocalStorage(storageShortsOnlyKey, shortsOnly);
         if (value === '' && required) {
             setErrorText(KEYWORD_MISSING_MSG);
         }
