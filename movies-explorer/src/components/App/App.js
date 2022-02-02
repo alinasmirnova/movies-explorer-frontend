@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Main from '../Main';
 import Movies from '../Movies';
@@ -15,7 +15,6 @@ import ErrorActionContext from '../../contexts/ErrorActionContext';
 import ProtectedRoute from './ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { getCurrentUser, signOut, updateCurrentUser } from '../../utils/mainApi';
-import { useCallback } from 'react/cjs/react.development';
 
 function App() {
     const [showError, setShowError] = useState(false);

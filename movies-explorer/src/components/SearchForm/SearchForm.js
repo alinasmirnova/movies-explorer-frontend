@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import { KEYWORD_MISSING_MSG } from '../../utils/consts';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import Button from '../Button';
