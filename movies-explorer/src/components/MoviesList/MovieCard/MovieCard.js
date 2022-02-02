@@ -18,8 +18,8 @@ function MovieCard({ card, onLike, onDelete }) {
 
     return (
         <div className="card">
-            <ExternalLink to={card.trailer}>
-                <img className="card__thumbnail" src={card.thumbnail} alt={card.nameRU} />
+            <ExternalLink className="card__thumbnail" to={card.trailer}>
+                <img className="card__thumbnail-image" src={card.thumbnail} alt={card.nameRU} />
             </ExternalLink>
             <h2 className="card__title">{card.nameRU}</h2>
             <Button className="card__action" onClick={onClick}>
