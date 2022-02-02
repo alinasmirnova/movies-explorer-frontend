@@ -1,5 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
-import { useState } from 'react/cjs/react.development';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import MoviesList from '../MoviesList';
