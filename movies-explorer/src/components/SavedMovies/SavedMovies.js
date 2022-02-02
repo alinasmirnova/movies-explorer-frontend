@@ -8,7 +8,7 @@ import Preloader from '../Preloader';
 import './SavedMovies.css';
 import { deleteMovie, getSavedMovies } from '../../utils/mainApi';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
-import { filter } from '../../utils/filter';
+import { filterSavedCards } from '../../utils/filter';
 
 function SavedMovies({loggedIn}) {
     const [cards, setCards] = useState([]);
@@ -40,7 +40,7 @@ function SavedMovies({loggedIn}) {
         deleteMovie(card._id)
             .then(res => {
                 updateCards();
-                setVisibleCards(filter(cards, currentFilter.keyword, currentFilter.shortsOnly));
+                setVisibleCards(filterSavedCards(cards, currentFilter.keyword, currentFilter.shortsOnly));
             })
         .catch((err) => {
             onError(err);
@@ -48,15 +48,20 @@ function SavedMovies({loggedIn}) {
     }
 
     const handleSearch = (keyword, shortsOnly) => {
-        setVisibleCards(filter(cards, keyword, shortsOnly));
+        setVisibleCards(filterSavedCards(cards, keyword, shortsOnly));
         setCurrentFilter({keyword, shortsOnly});
+    }
+
+    const handleShortsOnlyChange = (shortsOnly) => {
+        setCurrentFilter({...currentFilter, shortsOnly: shortsOnly});
+        setVisibleCards(filterSavedCards(cards, currentFilter.keyword, shortsOnly));
     }
 
     return (
         <div className="saved-movies">
             <Header activeTab="saved-movies" isLoggedIn={loggedIn}/>
             <main className='saved-movies__container'>
-                <SearchForm onSubmit={ handleSearch } required={false}/>
+                <SearchForm onSubmit={ handleSearch } onShortsOnlyChange={handleShortsOnlyChange} required={false}/>
                 { showPreloader && <Preloader /> }
                 { !showPreloader && 
                     <>                

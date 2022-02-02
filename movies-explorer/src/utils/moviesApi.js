@@ -4,9 +4,9 @@ import { filter } from "./filter";
 const moviesUri = 'https://api.nomoreparties.co/beatfilm-movies';
 const imageBaseUri = 'https://api.nomoreparties.co/';
 
-function getMovies(keyword, shortsOnly) {
+function getMovies(keyword) {
    return getJson(fetch(moviesUri))
-   .then(res => filter(res, keyword, shortsOnly))
+   .then(res => filter(res, keyword))
    .then(res => res.map((movie) => {
         return {
         country: movie.country,

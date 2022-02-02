@@ -12,8 +12,10 @@ import { CARDS_KEY, SEARCH_ERROR_MSG, SEARCH_TEXT_KEY, SHORTS_ONLY_KEY, VISIBLE_
 import { getVisibleCards } from '../../utils/cardsHelpers';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import { deleteMovie, getSavedMovies, saveMovie } from '../../utils/mainApi';
+import { filterShortsOnly } from '../../utils/filter';
 
 function Movies({loggedIn}) {
+    const [allCards, setAllCards] = useState([]);
     const [cards, setCards] = useState([]);
     const [visibleCards, setVisibleCards] = useState();
     const [savedCards, setSavedCards] = useState([]);
@@ -33,9 +35,15 @@ function Movies({loggedIn}) {
 
     useEffect(() => {
         const all = fromLocalStorage(CARDS_KEY) ?? []; 
-        setCards(all);
+        setAllCards(all);
+
+        const shortsOnly = fromLocalStorage(SHORTS_ONLY_KEY) ?? false;
+        const filteredCards = filterShortsOnly(all, shortsOnly);
+        setCards(filteredCards);
+
         const visibleCount = fromLocalStorage(VISIBLE_CARDS_COUNT_KEY) ?? 0;
-        setVisibleCards(all.slice(0, visibleCount));
+        setVisibleCards(filteredCards.slice(0, visibleCount));
+
         updateSavedCards();
         setSearched(visibleCount > 0);
     }, [updateSavedCards]);
@@ -73,14 +81,17 @@ function Movies({loggedIn}) {
     const handleSearch = (keyword, shortsOnly) => {
         setSearched(true);
         setShowPreloader(true);
-        getMovies(keyword, shortsOnly)
+        getMovies(keyword)
         .then((res) => {    
-            updateCards(res);
-            updateVisibleCards(getVisibleCards(res, savedCards, []))
+            updateAllCards(res);
+            const filtered = filterShortsOnly(res, shortsOnly);
+            setCards(filtered);
+            updateVisibleCards(getVisibleCards(filtered, savedCards, []))
         })
         .catch((err) => {
-            updateCards([]);
-            updateVisibleCards([])
+            updateAllCards([]);
+            updateVisibleCards([]);
+            setCards([]);
             onError({ message: SEARCH_ERROR_MSG });
         })
         .finally(() => {
@@ -88,9 +99,15 @@ function Movies({loggedIn}) {
         });
     }
 
-    const updateCards = (all) => {
-        setCards(all);
-        toLocalStorage(CARDS_KEY, all);     
+    const handleShortsOnlyChange = (shortsOnly) => {
+        const cards = filterShortsOnly(allCards, shortsOnly);
+        setCards(cards);
+        updateVisibleCards(getVisibleCards(cards, savedCards, []));
+    }
+
+    const updateAllCards = (all) => {
+        setAllCards(all);
+        toLocalStorage(CARDS_KEY, all);          
     }
 
     const updateVisibleCards = (visible) => {
@@ -102,7 +119,7 @@ function Movies({loggedIn}) {
         <div className="movies">
             <Header activeTab="movies" isLoggedIn={loggedIn}/>
             <main className="movies__container">
-                <SearchForm onSubmit={handleSearch} storageTextKey={SEARCH_TEXT_KEY} storageShortsOnlyKey={SHORTS_ONLY_KEY} required={true}/>
+                <SearchForm onSubmit={handleSearch} onShortsOnlyChange={handleShortsOnlyChange} storageTextKey={SEARCH_TEXT_KEY} storageShortsOnlyKey={SHORTS_ONLY_KEY} required={true}/>
                 { showPreloader && <Preloader /> }
                 { !showPreloader && cards.length > 0 &&
                     <>                

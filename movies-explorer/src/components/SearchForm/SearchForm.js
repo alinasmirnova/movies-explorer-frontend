@@ -6,7 +6,7 @@ import Button from '../Button';
 import FilterCheckbox from './FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm({ onSubmit, storageTextKey, storageShortsOnlyKey, required }) {
+function SearchForm({ onSubmit, onShortsOnlyChange, storageTextKey, storageShortsOnlyKey, required }) {
     const [value, setValue] = useState('');
     const [shortsOnly, setShortsOnly] = useState(false);
     const [errorText, setErrorText] = useState('');
@@ -23,6 +23,8 @@ function SearchForm({ onSubmit, storageTextKey, storageShortsOnlyKey, required }
 
     const handleShortsOnlyChange = (e) => {
         setShortsOnly(e.target.checked);
+        toLocalStorage(storageShortsOnlyKey, e.target.checked);
+        onShortsOnlyChange(e.target.checked);
     }
 
     const handleSubmit = (e) => {
@@ -38,14 +40,16 @@ function SearchForm({ onSubmit, storageTextKey, storageShortsOnlyKey, required }
     }
 
     return (
-        <form name="search-films" className="search-form">
-            <div className="search-form__container">
-                <input name="title" className="search-form__input" type="text" placeholder="Фильм" value={value} onChange={handleValueChange} required={required}/>
-                <Button className="search-form__submit" type="submit" onClick={handleSubmit}>Поиск</Button>
-                <span className="search-form__error">{errorText}</span>
-            </div>
+        <div className="search-form">
+            <form name="search-films">
+                <div className="search-form__container">
+                    <input name="title" className="search-form__input" type="text" placeholder="Фильм" value={value} onChange={handleValueChange} required={required}/>
+                    <Button className="search-form__submit" type="submit" onClick={handleSubmit}>Поиск</Button>
+                    <span className="search-form__error">{errorText}</span>
+                </div>
+            </form>
             <FilterCheckbox name="shortsOnly" value={shortsOnly} onChange={handleShortsOnlyChange}/>
-        </form>
+        </div>        
     );
 }
 
