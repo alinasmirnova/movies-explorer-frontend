@@ -5,24 +5,31 @@ import { UserName, Email } from '../EditableFields';
 import UserForm from '../UserForm';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useNavigate } from 'react-router-dom';
+import SuccessPopup from './SuccessPopup/SuccessPopup';
 
 function EditProfile({loggedIn, onSubmit}) {
     const currentUser = useContext(CurrentUserContext);
     const [userName, setUserName] = useState(currentUser.name);
     const [userEmail, setUserEmail] = useState(currentUser.email);
     const [submitErrorText, setSubmitErrorText] = useState('');
+    const [showSuccess, setShowSuccess] = useState(false);
     const navigate = useNavigate();
         
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit({ name: userName, email: userEmail })
         .then(() => {
-            navigate(-1);
+            setShowSuccess(true);
         })
         .catch((err) => {
             setSubmitErrorText(err.message);
         });        
     };
+
+    const onSuccessClose = () => {
+        setShowSuccess(false);
+        navigate(-1);
+    }
 
     const handleNameChange = (name) => {
         setUserName(name);
@@ -45,6 +52,7 @@ function EditProfile({loggedIn, onSubmit}) {
                     <Email value={userEmail} onChange={handleEmailChange}/>
                 </UserForm>
             </main>
+            { showSuccess && <SuccessPopup onClose={onSuccessClose}></SuccessPopup> }
         </div>
     );
 }
