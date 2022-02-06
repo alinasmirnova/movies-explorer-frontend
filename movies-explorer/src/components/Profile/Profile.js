@@ -16,7 +16,7 @@ function Profile({ onLogout, loggedIn }) {
     return (
         <div className="profile">
             <Header isLoggedIn={loggedIn} />
-            <main className="profile__container">
+            { userInfo && <main className="profile__container">
                 <h1 className="profile__name">Привет, {userInfo.name}!</h1>
                 <div className="profile__fields">
                     <Field title="Имя">{userInfo.name}</Field>
@@ -26,7 +26,7 @@ function Profile({ onLogout, loggedIn }) {
                     <InternalLink className="profile__edit" to="/edit-profile">Редактировать</InternalLink>
                     <Button className="profile__logout" onClick={logout}>Выйти из аккаунта</Button>
                 </List>
-            </main>
+            </main>}
         </div>        
     );
 }

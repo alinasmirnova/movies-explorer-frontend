@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Header from '../Header';
 import './EditProfile.css';
 import { UserName, Email } from '../EditableFields';
@@ -9,11 +9,16 @@ import SuccessPopup from './SuccessPopup/SuccessPopup';
 
 function EditProfile({loggedIn, onSubmit}) {
     const currentUser = useContext(CurrentUserContext);
-    const [userName, setUserName] = useState(currentUser.name);
-    const [userEmail, setUserEmail] = useState(currentUser.email);
+    const [userName, setUserName] = useState(currentUser?.name ?? '');
+    const [userEmail, setUserEmail] = useState(currentUser?.email ?? '');
     const [submitErrorText, setSubmitErrorText] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setUserEmail(currentUser?.email ?? '');
+        setUserName(currentUser?.name ?? '');
+    }, [currentUser]);
         
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -46,12 +51,12 @@ function EditProfile({loggedIn, onSubmit}) {
     return (
         <div className="edit-profile">
             <Header isLoggedIn={loggedIn} />
-            <main className="edit-profile__container">
+            {currentUser && <main className="edit-profile__container">
                 <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" canSubmit={userInfoChanged()} onSubmit={handleSubmit} submitErrorText={submitErrorText}>
                     <UserName value={userName} onChange={handleNameChange}/>
                     <Email value={userEmail} onChange={handleEmailChange}/>
                 </UserForm>
-            </main>
+            </main>}
             { showSuccess && <SuccessPopup onClose={onSuccessClose}></SuccessPopup> }
         </div>
     );
