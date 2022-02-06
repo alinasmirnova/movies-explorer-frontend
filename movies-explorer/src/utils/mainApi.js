@@ -53,8 +53,13 @@ function deleteMovie(id) {
 }
 
 function get(subPath) {
+    const myHeaders = new Headers();
+    myHeaders.append('pragma', 'no-cache');
+    myHeaders.append('cache-control', 'no-cache');
+
     return getJson(fetch(buildUri(subPath), {
         credentials: 'include',
+        headers: myHeaders,
     }));   
 }
 
