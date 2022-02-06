@@ -54,6 +54,7 @@ function Movies({loggedIn}) {
                 .then((res) => {
                     updateSavedCards();
                     card.isSaved = false;
+                    card.id = undefined;
                     updateVisibleCards(visibleCards);
                 })
                 .catch((err) => {
@@ -65,7 +66,7 @@ function Movies({loggedIn}) {
                 .then((res) => {
                     updateSavedCards();
                     card.isSaved = true;
-                    card.id = res.id;
+                    card.id = res._id;
                     updateVisibleCards(visibleCards);
                 })
                 .catch((err) => {
