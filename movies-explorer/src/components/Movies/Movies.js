@@ -9,7 +9,7 @@ import './Movies.css';
 import { getMovies } from '../../utils/moviesApi';
 import ErrorActionContext from '../../contexts/ErrorActionContext';
 import { CARDS_KEY, SEARCH_ERROR_MSG, SEARCH_TEXT_KEY, SHORTS_ONLY_KEY, VISIBLE_CARDS_COUNT_KEY } from '../../utils/consts';
-import { getVisibleCards } from '../../utils/cardsHelpers';
+import { getVisibleCards, toVisibleCards } from '../../utils/cardsHelpers';
 import { fromLocalStorage, toLocalStorage } from '../../utils/localStorage';
 import { deleteMovie, getSavedMovies, saveMovie } from '../../utils/mainApi';
 import { filterShortsOnly } from '../../utils/filter';
@@ -24,9 +24,10 @@ function Movies({loggedIn}) {
     const onError = React.useContext(ErrorActionContext);
 
     const updateSavedCards = useCallback(() => {
-        getSavedMovies()
+        return getSavedMovies()
             .then((res) => {
                 setSavedCards(res);
+                return res;
             })
             .catch((err) => {
                 onError(err);
@@ -41,11 +42,12 @@ function Movies({loggedIn}) {
         const filteredCards = filterShortsOnly(all, shortsOnly);
         setCards(filteredCards);
 
-        const visibleCount = fromLocalStorage(VISIBLE_CARDS_COUNT_KEY) ?? 0;
-        setVisibleCards(filteredCards.slice(0, visibleCount));
-
-        updateSavedCards();
-        setSearched(visibleCount > 0);
+        updateSavedCards().then(saved => {
+            const visibleCount = fromLocalStorage(VISIBLE_CARDS_COUNT_KEY) ?? 0;
+            setVisibleCards(toVisibleCards(filteredCards.slice(0, visibleCount), saved));
+        
+            setSearched(visibleCount > 0);
+        });        
     }, [updateSavedCards]);
 
     const handleCardLike = (card) => {
@@ -122,7 +124,7 @@ function Movies({loggedIn}) {
             <main className="movies__container">
                 <SearchForm onSubmit={handleSearch} onShortsOnlyChange={handleShortsOnlyChange} storageTextKey={SEARCH_TEXT_KEY} storageShortsOnlyKey={SHORTS_ONLY_KEY} required={true}/>
                 { showPreloader && <Preloader /> }
-                { !showPreloader && cards.length > 0 &&
+                { !showPreloader && cards.length > 0 && visibleCards?.length > 0 &&
                     <>                
                         <MoviesList cards={visibleCards} onLike={handleCardLike} /> 
                         { cards.length > visibleCards.length && <Button className="movies__more-button" onClick={getMore}>Ещё</Button> }
