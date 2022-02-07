@@ -1,26 +1,39 @@
-import { useEffect, useState } from 'react';
-import Button from '../Button';
+import { useContext, useEffect, useState } from 'react';
 import Header from '../Header';
 import './EditProfile.css';
 import { UserName, Email } from '../EditableFields';
 import UserForm from '../UserForm';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useNavigate } from 'react-router-dom';
+import SuccessPopup from './SuccessPopup/SuccessPopup';
 
-function EditProfile() {
-    const [userName, setUserName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [hasErrors, setHasErrors] = useState(false);
+function EditProfile({loggedIn, onSubmit}) {
+    const currentUser = useContext(CurrentUserContext);
+    const [userName, setUserName] = useState(currentUser?.name ?? '');
+    const [userEmail, setUserEmail] = useState(currentUser?.email ?? '');
+    const [submitErrorText, setSubmitErrorText] = useState('');
+    const [showSuccess, setShowSuccess] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setUserName('Виталий');
-        setUserEmail('pochta@yandex.ru');
-    }, []);
-
+        setUserEmail(currentUser?.email ?? '');
+        setUserName(currentUser?.name ?? '');
+    }, [currentUser]);
+        
     const handleSubmit = (e) => {
         e.preventDefault();
+        onSubmit({ name: userName, email: userEmail })
+        .then(() => {
+            setShowSuccess(true);
+        })
+        .catch((err) => {
+            setSubmitErrorText(err.message);
+        });        
     };
 
-    const handleError = (e) => {
-        
+    const onSuccessClose = () => {
+        setShowSuccess(false);
+        navigate(-1);
     }
 
     const handleNameChange = (name) => {
@@ -31,15 +44,20 @@ function EditProfile() {
         setUserEmail(email);
     }
 
+    const userInfoChanged = () => {
+        return currentUser.name !== userName || currentUser.email !== userEmail;
+    }
+
     return (
         <div className="edit-profile">
-            <Header isLoggedIn={true} />
-            <main className="edit-profile__container">
-                <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" onSubmit={handleSubmit} hasErrors={hasErrors}>
-                    <UserName value={userName} onChange={handleNameChange} onError={handleError}/>
-                    <Email value={userEmail} onChange={handleEmailChange} onError={handleError}/>
+            <Header isLoggedIn={loggedIn} />
+            {currentUser && <main className="edit-profile__container">
+                <UserForm name="edit-profile" title="Редактирование профиля" submitText="Сохранить" canSubmit={userInfoChanged()} onSubmit={handleSubmit} submitErrorText={submitErrorText}>
+                    <UserName value={userName} onChange={handleNameChange}/>
+                    <Email value={userEmail} onChange={handleEmailChange}/>
                 </UserForm>
-            </main>
+            </main>}
+            { showSuccess && <SuccessPopup onClose={onSuccessClose}></SuccessPopup> }
         </div>
     );
 }

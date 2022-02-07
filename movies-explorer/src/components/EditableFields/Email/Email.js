@@ -1,8 +1,21 @@
+import validator from 'validator';
 import EditableField from "../EditableField";
 
-function Email({value, onChange, onError}) {
+function Email({value, onChange}) {
     const validate = (value, validity) => {
-        return { isNewValueValid: true, error: '' };
+        if (validity.valid){
+            return { isNewValueValid: true, error: '' };
+        }
+
+        if (validity.valueMissing) {
+            return { isNewValueValid: false, error: 'Введите email'}
+        }
+
+        if (validity.typeMismatch || !validator.isEmail(value)) {
+            return { isNewValueValid: false, error: 'Неправильный формат email' }
+        }
+
+        return { isNewValueValid: false, error: 'Некорректное значение' }; 
     }
 
     return (
@@ -11,7 +24,6 @@ function Email({value, onChange, onError}) {
                         placeholder="E-mail"
                         type="email"
                         value={value}
-                        onError={onError}
                         onValueChange={onChange}
                         validate={validate}
                         required />
